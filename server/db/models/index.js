@@ -12,12 +12,15 @@ const Brook = require('./brook');
 
  Bubble.belongsTo(User);
  Bubble.belongsTo(Bubble, {as: 'nextBubble'})
+ //maybe unnecessary? just get messages in stream, order by date?
  Bubble.belongsTo(Ocean);
  Bubble.belongsTo(Brook);
 
  Brook.belongsTo(User, {as: 'sourceUser'})
  Brook.belongsTo(User, {as: 'hookedUser'})
  Brook.hasMany(Bubble);
+
+ Ocean.belongsTo(User)  //user who made ocean, can edit it, CANT DELETE IT
 
 
 //add ocean to ocean association for "sub sea"s?

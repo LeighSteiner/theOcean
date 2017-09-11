@@ -25,4 +25,4 @@ const Bubble = db.define('bubble', {
 //nextBubble id association
 })
 
-module.exports
+module.exports = Bubble

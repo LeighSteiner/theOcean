@@ -24,6 +24,10 @@ const User = db.define('user', {
   stars: {
     type: Sequelize.INTEGER, 
     defaultValue: 0,
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN, 
+    defaultValue: false,
   }
 })
 
