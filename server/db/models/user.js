@@ -16,6 +16,14 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  }, 
+  meetAffirm: {
+    type: Sequelize.INTEGER, 
+    defaultValue: 0,
+  }, 
+  stars: {
+    type: Sequelize.INTEGER, 
+    defaultValue: 0,
   }
 })
 
