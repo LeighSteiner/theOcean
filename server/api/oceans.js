@@ -87,7 +87,7 @@ router.post('/new-ocean', (req, res, next) => {
       next(new Error('you have to sign in to make oceans'))
   	}
   })
-  .then( freshOcean => res.json(freshOcean))
+  .then( (freshOcean) => res.json(freshOcean))
   .catch(next);
 })
 
