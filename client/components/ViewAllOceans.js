@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import DocumentTitle from 'react-document-title';
+// import DocumentTitle from 'react-document-title';
 import { Link } from 'react-router-dom';
 import { fetchOceans } from '../store'
 
@@ -11,10 +11,7 @@ class ViewAllOceans extends Component {
   }
 
   componentDidMount() {
-  
     this.props.loadOceans()
-    .then(() => {this.forceUpdate()})
-     
   }
 
   render() {

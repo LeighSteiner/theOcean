@@ -25,7 +25,7 @@ export const fetchOceans = () => {
 
 //reducer
 
-export default function (state = allOceans, action){
+export default function (state = allOceans, action) {
   switch(action.type) {
   	case GET_OCEANS:
   	  return action.oceans
