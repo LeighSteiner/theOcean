@@ -19,11 +19,7 @@ class ViewAllOceans extends Component {
 
   render() {
   	const oceans = this.props.allOceans
-  	// console.log('oceans', allOceans)
-  	// console.log('allOceans', this.props.allOceans)
-  	// console.log('first ocean', this.props.allOceans[0])
   	return (
-   
       <div className="view-all-oceans">
        <h3>Every Ocean in the Universe</h3>
         <ul>
