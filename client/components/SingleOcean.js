@@ -15,7 +15,7 @@ class SingleOcean extends Component {
   	this.props.loadOceanBubbles(oceanId)
   }
 
-  render(){
+  render() {
   	const ocean = this.props.singleOcean
   	const bubbles = this.props.oceanBubbles 
 
