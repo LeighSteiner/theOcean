@@ -13,3 +13,5 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './allOceans'
+export * from './singleOcean'
+export * from './oceanBubbles'

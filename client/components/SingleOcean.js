@@ -10,31 +10,39 @@ class SingleOcean extends Component {
   }
 
   componentDidMount() {
+  	const oceanId = +this.props.match.params.oceanId
   	this.props.loadOneOcean(oceanId)
-  	.then(() => { return loadOceanBubbles(oceanId)})
+  	this.props.loadOceanBubbles(oceanId)
   }
 
   render(){
-  	const ocean = this.props.ocean
-  	const bubbles = this.props.bubbles
+  	const ocean = this.props.singleOcean
+  	const bubbles = this.props.oceanBubbles 
+
+    console.log('PROPS', this.props)
   	return (
   	 <div className="single-ocean">
+     {
+     	ocean && bubbles ? 
+      <div>
       <h3>{ocean.name}</h3> 
       <h4>{ocean.description}</h4>
       <ul>
-      {
+       {
       	bubbles && bubbles.length ? 
-      	bubbles.map ( bubble => ( <li key={ocean.id}>{ocean.name} </li> )) : null
-      }
+      	bubbles.map ( bubble => ( <li key={bubble.id}>{bubble.message} </li> )) : null
+       }
       </ul>
+      </div> : null
+     }
      </div>
   	)
   }
 }
 
 const mapState = state => ({
-  ocean: state.ocean, 
-  bubbles: state.bubbles
+  singleOcean: state.singleOcean,
+  oceanBubbles: state.oceanBubbles,
 })
 
 const mapDispatch = dispatch => ({
