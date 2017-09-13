@@ -13,6 +13,8 @@ const Brook = require('./brook');
  Bubble.belongsTo(User);
  Bubble.belongsTo(Bubble, {as: 'nextBubble'})
  //maybe unnecessary? just get messages in stream, order by date?
+ Bubble.belongsTo(Bubble, {as: 'head'})
+ // ^^ this is for "suitor" bubbles --> they are associated with a head message before they've been chosen, once they're chosen a brook is created
  Bubble.belongsTo(Ocean);
  Bubble.belongsTo(Brook);
 

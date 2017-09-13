@@ -34,3 +34,19 @@ router.delete('/:bubbleId', (req, res, next) => {
   })
   .catch(next);
 })
+
+//get all unHooked bubbles associated with a bubble
+
+router.get('/:bubbleId/suitors', (req, res, next) => {
+  console.log('suitor route!')
+  const bubbleId = req.params.bubbleId
+  Bubble.findAll({where: {
+    isHooked: false 
+    // headId: bubbleId  //headId association
+  }})
+  .then(( suitors ) => { //add security later
+    console.log('SUITORS',suitors)
+     res.json(suitors)
+  })
+  .catch(next);
+})
