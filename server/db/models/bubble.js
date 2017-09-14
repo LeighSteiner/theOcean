@@ -5,11 +5,11 @@ const Bubble = db.define('bubble', {
  message: {
    type: Sequelize.TEXT
  }, 
- creationDate: {
-   type: Sequelize.DATE, 
-   defaultValue: Sequelize.NOW,
-   //x time after creation, bubbles no longer show up in their oceans
- }, 
+ // creationDate: {
+ //   type: Sequelize.DATE, 
+ //   defaultValue: Sequelize.NOW,
+ //   //x time after creation, bubbles no longer show up in their oceans
+ // }, 
   isHead: {
  	type: Sequelize.BOOLEAN, 
  	defaultValue: false, 

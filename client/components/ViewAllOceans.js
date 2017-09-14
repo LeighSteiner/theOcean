@@ -21,7 +21,7 @@ class ViewAllOceans extends Component {
        <h3>Every Ocean in the Universe</h3>
         <ul>
         { oceans && oceans.length ? 
-          oceans.map( ocean => ( <li key={ocean.id}>{ocean.name} </li> ) ) : null
+          oceans.map( ocean => ( <li key={ocean.id}>{ocean.name} - {ocean.description} </li> ) ) : null
         }
         </ul>
       </div>

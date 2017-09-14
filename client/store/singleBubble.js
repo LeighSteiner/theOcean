@@ -5,6 +5,7 @@ import history from '../history';
 
 const GET_ONE_BUBBLE = 'GET_ONE_BUBBLE'
 
+
 //initial state
 
 const oneBubble = {}

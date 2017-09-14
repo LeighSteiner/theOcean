@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchOneOcean, fetchOneBubble } from '../store'
+import {  fetchOneBubble, fetchSuitors } from '../store'
 
 class SingleBubble extends Component {
   constructor(props) {
@@ -12,15 +12,16 @@ class SingleBubble extends Component {
   componentDidMount() {
   	const bubbleId = +this.props.match.params.bubbleId
   	this.props.loadOneBubble(bubbleId)
-  	.then((bubble) => {
-  	  // return this.props.loadOneOcean(bubble.oceanId)
-  	  console.log('load ocean here if you need it')
+  	.then((action) => {
+  	  if(action.bubble.isHead){
+  	  	return this.props.loadSuitors(bubbleId)
+  	  }
   	})
   }
 
   render() {
     const bubble = this.props.singleBubble;
-    const ocean = this.props.singleOcean;
+    const suitors = this.props.bubbleSuitors;
   	return(
       <div className="single-bubble">
       {
@@ -28,6 +29,12 @@ class SingleBubble extends Component {
         <p>{bubble.message}</p>
       	:null
       }
+      <ul>
+      {
+      	suitors && suitors.length ? 
+      	 suitors.map( suitor => (<li key={suitor.id}> {suitor.message}</li>)) : null
+      }
+      </ul>
       </div>
   		)
   }
@@ -35,14 +42,15 @@ class SingleBubble extends Component {
 
 const mapState = state => ({
   singleBubble: state.singleBubble, 
-  singleOcean: state.singleOcean, 
-  user: state.user
+  user: state.user, 
+  bubbleSuitors: state.bubbleSuitors
 
 })
 
 const mapDispatch = dispatch => ({
   loadOneOcean(oceanId){ return dispatch(fetchOneOcean(oceanId))}, 
-  loadOneBubble(bubbleId){ return dispatch(fetchOneBubble(bubbleId))}
+  loadOneBubble(bubbleId){ return dispatch(fetchOneBubble(bubbleId))},
+  loadSuitors(bubbleId){ return dispatch(fetchSuitors(bubbleId))}
 })
 
 export default connect(mapState, mapDispatch)(SingleBubble)

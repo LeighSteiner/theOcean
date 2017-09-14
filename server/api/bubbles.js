@@ -41,12 +41,15 @@ router.get('/:bubbleId/suitors', (req, res, next) => {
   console.log('suitor route!')
   const bubbleId = req.params.bubbleId
   Bubble.findAll({where: {
-    isHooked: false 
-    // headId: bubbleId  //headId association
+    isHooked: false, 
+    headId: bubbleId  //headId association
   }})
   .then(( suitors ) => { //add security later
-    console.log('SUITORS',suitors)
-     res.json(suitors)
+     if (suitors[0].headId == req.user.id){
+       res.json(suitors)
+     }else{
+      next(new Error('this is not your dating pool'))
+     }
   })
   .catch(next);
 })
