@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, ViewAllOceans, SingleOcean, SingleBubble } from './components'
+import { Main, Login, Signup, UserHome, ViewAllOceans, SingleOcean, SingleBubble, NewBubbleForm } from './components'
 import {me} from './store'
 
 /**
@@ -29,6 +29,7 @@ class Routes extends Component {
               isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
+                  <Route path='/new-bubble' component={NewBubbleForm}/>
                   <Route path='/universe' component={ViewAllOceans}/>
                   <Route path='/oceans/:oceanId' component={SingleOcean}/>
                   <Route path='/bubbles/:bubbleId' component={SingleBubble}/>
