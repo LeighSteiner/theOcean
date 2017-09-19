@@ -17,6 +17,20 @@ router.get('/:bubbleId', (req, res, next) => {
   .catch(next);
 })
 
+// post a new first bubble
+
+router.post('/new-bubble', (req, res, next) => {
+  Bubble.create(req.body)
+  .then(bubble => {
+    if(req.user && bubble.userId === req.user.id){
+      res.json(bubble) 
+    }else{
+      next(new Error('you must sign in to blow a bubble'))
+    }
+  })
+  .catch(next);
+})
+
 //delete a bubble ADMIN ONLY 
 
 router.delete('/:bubbleId', (req, res, next) => {

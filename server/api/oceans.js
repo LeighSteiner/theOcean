@@ -15,6 +15,21 @@ router.get('/', (req, res, next) => {
 	.catch(next);
 })
 
+//find ocean via its name @ /api/oceans/name/:oceanName
+router.get('/name/:oceanName', (req, res, next) => {
+  Ocean.findOne({where: {name: req.params.oceanName}})
+  .then(ocean => {
+    if(ocean){
+      res.json(ocean);
+    }else{
+      res.json({id: 1})
+      //this is our default case --> if we don't find an ocean with that name
+      //we want to put the bubble in the default 'first' ocean
+    }
+  })
+  .catch(next);
+})
+
 //get the specific ocean name and description
 router.get('/ocean/:oceanId', (req, res, next) => {
   const oceanId = req.params.oceanId;

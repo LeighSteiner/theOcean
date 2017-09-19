@@ -11,32 +11,46 @@ class NewBubbleForm extends Component {
   	super(props)
   	this.state = {
   	 message:"", 
-  	 oceanId: "", //the default setting will be to send it to cosmic ocean "id:1"
+  	 ocean: "", //the default setting will be to send it to cosmic ocean "id:1"
   	 userId: 1
   	}
+  	this.handleMessageChange = this.handleMessageChange.bind(this);
+  	this.handleOceanChange = this.handleOceanChange.bind(this);
+  	this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleChange(e){
-  // 	this.setState({e.target.name: e.target.value})
-  // }
+  handleMessageChange(e) { 
+  	this.setState({message: e.target.value})
+  }
 
-  handleSubmit(e){}
+  handleOceanChange(e) {
+  	this.setState({ocean: e.target.value})
+  }
+
+  handleSubmit(e){
+   e.preventDefault();
+   //create message from state, send thunk from store
+   console.log('here is where i would blow a bubble')
+   console.log('YOOZER', this.props.user.id)
+  }
 
   render() {
   	console.log('the state!', this.state)
   	return (
      <div className='new-bubble-form'>
      <label>What Ocean will you drop your bubble in?</label>
-     <input className="ocean"/>
+     <input name="ocean" onChange={this.handleOceanChange}/>
      <label>What is the message in your bottle?</label>
-     <input className="message"/>
+     <input name="message" onChange={this.handleMessageChange}/>
+     <br/>
+     <button className="blow-button" type="submit" onClick={this.handleSubmit}>Blow Your Bubble</button>
      </div>
   		)
   }
 }
 
 const mapState = state => ({
-  // user: user
+  user: state.user
 })
 
 const mapDispatch = (dispatch) => ({})
