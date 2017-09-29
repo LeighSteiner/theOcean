@@ -26,17 +26,12 @@ export const fetchOneBubble = (bubbleId) => {
   };
 }
 
-export const newFirstBubble = (bubble) => {
+export const makeNewFirstBubble = (bubble) => {
   return function thunk(dispatch) {
-    //first find ocean, or set default ocean = 1
-    //oceans need to either have a name with no spaces, 
-    //or a property that is the name with the spaces removed
-    //then post new bubble
-    return axios.get(`/api/oceans/${bubble.ocean}`)
-    .then( oceanId => {
-      //this is wrong. come back to it
-      return axios.post(`/api/bubbles/new-bubble`)
-    })
+    // does not deal with the question of setting the ocean
+   return axios.post(`/api/bubbles/new-bubble`, bubble)
+   .then( res => dispatch(newFirstBubble(res.data)))
+   .catch((error) => { console.log(error); });
   }
 }
 

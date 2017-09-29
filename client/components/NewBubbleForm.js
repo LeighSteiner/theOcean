@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { withRouter } from 'react-router-dom';
-import {/* redux things */} from '../store';
+import { makeNewFirstBubble, fetchOceans } from '../store';
 
 //for now, this is the form only for a new Bubble to be dropped in the ocean
+//make the bubble, then choose an ocean for it to be dropped into, after which it will update with the ocean
 
 
 class NewBubbleForm extends Component {
@@ -11,8 +12,8 @@ class NewBubbleForm extends Component {
   	super(props)
   	this.state = {
   	 message:"", 
-  	 ocean: "", //the default setting will be to send it to cosmic ocean "id:1"
-  	 userId: 1
+  	 ocean: 1, //the default setting will be to send it to cosmic ocean "id:1"
+  	 userId: 0, //not a real user -- if we see userId: 0 we know something is wrong
   	}
   	this.handleMessageChange = this.handleMessageChange.bind(this);
   	this.handleOceanChange = this.handleOceanChange.bind(this);
@@ -29,17 +30,39 @@ class NewBubbleForm extends Component {
 
   handleSubmit(e){
    e.preventDefault();
-   //create message from state, send thunk from store
-   console.log('here is where i would blow a bubble')
-   console.log('YOOZER', this.props.user.id)
+
+   let theBubble = {
+    message: this.state.message,
+    oceanId: this.state.ocean,
+    userId: this.props.user.id, 
+    isHead: true,
+   }
+   this.props.blowBubble(theBubble)
+   .then(() => {
+    this.setState({
+    message: "", 
+    ocean: 1, 
+    userId: 0,
+   })
+   })
+   
+  }
+
+  componentDidMount(){
+    this.props.loadOceans();
   }
 
   render() {
-  	console.log('the state!', this.state)
+    let oceans = this.props.allOceans;
   	return (
      <div className='new-bubble-form'>
      <label>What Ocean will you drop your bubble in?</label>
-     <input name="ocean" onChange={this.handleOceanChange}/>
+     <select onChange={this.handleOceanChange}>
+      {
+        oceans && oceans.length ? 
+        oceans.map( ocean => (<option key={ocean.id} value={ocean.id}>{ocean.name}</option>)) : null
+      }
+      </select>
      <label>What is the message in your bottle?</label>
      <input name="message" onChange={this.handleMessageChange}/>
      <br/>
@@ -50,9 +73,13 @@ class NewBubbleForm extends Component {
 }
 
 const mapState = state => ({
-  user: state.user
+  user: state.user, 
+  allOceans: state.allOceans,
 })
 
-const mapDispatch = (dispatch) => ({})
+const mapDispatch = (dispatch) => ({
+  blowBubble(bubble){ return dispatch(makeNewFirstBubble(bubble))}, 
+  loadOceans(){ return dispatch(fetchOceans()) }
+})
 
 export default connect(mapState,mapDispatch)(NewBubbleForm);
