@@ -15,6 +15,7 @@ class SingleBubble extends Component {
   }
 
   hookBubble(e) {
+    console.log('KEY', e.target.key)
      this.setState({hookedBubble: e.target.key, hookedMessage: e.target.value})
   }
 
@@ -37,8 +38,11 @@ class SingleBubble extends Component {
   }
 
   render() {
+    console.log('STATE', this.state)
     const bubble = this.props.singleBubble;
     const suitors = this.props.bubbleSuitors;
+    const suitor = suitors[0]
+     console.log('suitor?',suitor)
   	return(
       <div className="single-bubble">
       {
@@ -52,14 +56,8 @@ class SingleBubble extends Component {
       	 suitors.map( suitor => (<button key={suitor.id} onClick={this.hookBubble} value={suitor.message}> {suitor.message} </button>)) : null
       }
       {
-        this.state.hookedBubble ? 
-        <div>
-        <p>     Are you sure you want to hook the bubble that reads {this.state.hookedMessage}? 
-          You will not be able to see or respond to other bubbles after this. </p>
-        <button type="submit" onClick={this.handleSubmit}>
-          I'm sure! Hook this bubble!
-        </button>
-        <div> : null
+        this.state.hookedBubble ?
+        <p> are you sure you want to hook this bubble? </p> : null
       }
       </div>
   		)
