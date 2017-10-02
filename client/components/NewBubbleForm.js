@@ -41,9 +41,10 @@ class NewBubbleForm extends Component {
    .then(() => {
     this.setState({
     message: "", 
-    ocean: 1, 
+    ocean: this.state.ocean,
     userId: 0,
-   })
+     })
+    console.log('STATE AFTER SUBMIT',this.state)
    })
    
   }
@@ -64,7 +65,7 @@ class NewBubbleForm extends Component {
       }
       </select>
      <label>What is the message in your bottle?</label>
-     <input name="message" onChange={this.handleMessageChange}/>
+     <input name="message" onChange={this.handleMessageChange} value={this.state.message}/>
      <br/>
      <button className="blow-button" type="submit" onClick={this.handleSubmit}>Blow Your Bubble</button>
      </div>
