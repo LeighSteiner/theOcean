@@ -19,26 +19,22 @@ class ViewAllOceans extends Component {
   	return (
       <div className="view-all-oceans">
        <h3>Every Ocean in the Universe</h3>
-        <ul>
+        <div className="oceans-list">
         { oceans && oceans.length ? 
-          oceans.map( ocean => ( <li key={ocean.id}>{ocean.name} - {ocean.description} </li> ) ) : null
+          oceans.map( ocean => ( <Link to={`/oceans/${ocean.id}`} key={ocean.id}>{ocean.name} - {ocean.description} </Link> ) ) : null
         }
-        </ul>
+        </div>
       </div>
   	);
   }
 }
 
-
 const mapState = state => ({
-  allOceans: state.allOceans
+ allOceans: state.allOceans
 })
 
 const mapDispatch = dispatch => ({
-  loadOceans(){ return dispatch(fetchOceans()) }
+  loadOceans(){ return dispatch(fetchOceans())}
 })
 
-export default connect(mapState, mapDispatch)(ViewAllOceans);
 
-
-//  <DocumentTitle title="Every Ocean In The Universe">
