@@ -6,8 +6,8 @@ import { fetchOceans } from '../store'
 
 class ViewAllOceans extends Component {
   constructor(props) {
-  	super(props);
-  	this.state = {};
+    super(props);
+    this.state = {};
   }
 
   componentDidMount() {
@@ -15,30 +15,26 @@ class ViewAllOceans extends Component {
   }
 
   render() {
-  	const oceans = this.props.allOceans
-  	return (
+    const oceans = this.props.allOceans
+    return (
       <div className="view-all-oceans">
        <h3>Every Ocean in the Universe</h3>
-        <ul>
+        <div className="oceans-list">
         { oceans && oceans.length ? 
-          oceans.map( ocean => ( <li key={ocean.id}>{ocean.name} - {ocean.description} </li> ) ) : null
+          oceans.map( ocean => ( <Link to={`/oceans/${ocean.id}`} key={ocean.id}>{ocean.name} - {ocean.description} </Link> ) ) : null
         }
-        </ul>
+        </div>
       </div>
-  	);
+    );
   }
 }
 
-
 const mapState = state => ({
-  allOceans: state.allOceans
+ allOceans: state.allOceans
 })
 
 const mapDispatch = dispatch => ({
-  loadOceans(){ return dispatch(fetchOceans()) }
+  loadOceans(){ return dispatch(fetchOceans())}
 })
 
-export default connect(mapState, mapDispatch)(ViewAllOceans);
-
-
-//  <DocumentTitle title="Every Ocean In The Universe">
+export default connect(mapState, mapDispatch)(ViewAllOceans)

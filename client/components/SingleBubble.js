@@ -7,21 +7,30 @@ class SingleBubble extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hookedBubble: null, 
       hookedMessage: ""
     };
     this.hookBubble = this.hookBubble.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleYes = this.handleYes.bind(this);
+    this.handleNo = this.handleNo.bind(this);
   }
 
   hookBubble(e) {
-    console.log('KEY', e.target.key)
-     this.setState({hookedBubble: e.target.key, hookedMessage: e.target.value})
+     this.setState({ hookedMessage: e.target.value })
+
   }
 
   handleSubmit(e) {
     preventDefault(e);
     //thunk that updates bubble goes here. 
+  }
+
+  handleYes(e){
+    console.log('MESSAGE HOOKED')
+  }
+
+  handleNo(e){
+    this.setState({hookedMessage: ""})
   }
 
   componentDidMount() {
@@ -41,8 +50,7 @@ class SingleBubble extends Component {
     console.log('STATE', this.state)
     const bubble = this.props.singleBubble;
     const suitors = this.props.bubbleSuitors;
-    const suitor = suitors[0]
-     console.log('suitor?',suitor)
+
   	return(
       <div className="single-bubble">
       {
@@ -56,8 +64,14 @@ class SingleBubble extends Component {
       	 suitors.map( suitor => (<button key={suitor.id} onClick={this.hookBubble} value={suitor.message}> {suitor.message} </button>)) : null
       }
       {
-        this.state.hookedBubble ?
-        <p> are you sure you want to hook this bubble? </p> : null
+        this.state.hookedMessage ?
+        <div className="hook-a-bubble">
+          <p> are you sure you want to hook the bubble that reads "{this.state.hookedMessage}"? <br/>
+          you can only reply to one bubble, and once you pick one, you won't have access to the others anymore.
+          </p>
+          <button onClick={this.handleYes}>yes</button><button onClick={this.handleNo}>no</button>
+        </div>
+         : null
       }
       </div>
   		)
