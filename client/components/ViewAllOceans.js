@@ -37,4 +37,4 @@ const mapDispatch = dispatch => ({
   loadOceans(){ return dispatch(fetchOceans())}
 })
 
-
+export default connect(mapState, mapDispatch)(ViewAllOceans)
