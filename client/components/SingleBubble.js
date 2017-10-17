@@ -6,22 +6,54 @@ import {  fetchOneBubble, fetchSuitors } from '../store'
 class SingleBubble extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      hookedMessage: ""
+    };
+    this.hookBubble = this.hookBubble.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleYes = this.handleYes.bind(this);
+    this.handleNo = this.handleNo.bind(this);
+  }
+
+  hookBubble(e) {
+     this.setState({ hookedMessage: e.target.value })
+
+  }
+
+  handleSubmit(e) {
+    preventDefault(e);
+    //thunk that updates bubble goes here. 
+
+    //delete this
+  }
+
+  handleYes(e){
+    console.log('MESSAGE HOOKED')
+    //thunk that updates bubble goes here.
+  }
+
+  handleNo(e){
+    this.setState({hookedMessage: ""})
   }
 
   componentDidMount() {
   	const bubbleId = +this.props.match.params.bubbleId
   	this.props.loadOneBubble(bubbleId)
   	.then((action) => {
-  	  if(action.bubble.isHead){
+  	  if(action.bubble.isHead && !action.bubble.isHooked ){
   	  	return this.props.loadSuitors(bubbleId)
   	  }
+      if(action.bubble.isHead && action.bubble.isHooked){
+        //loadStream() ==> write this function
+      }
   	})
   }
 
   render() {
+    console.log('STATE', this.state)
     const bubble = this.props.singleBubble;
     const suitors = this.props.bubbleSuitors;
+
   	return(
       <div className="single-bubble">
       {
@@ -29,12 +61,21 @@ class SingleBubble extends Component {
         <p>{bubble.message}</p>
       	:null
       }
-      <ul>
+
       {
       	suitors && suitors.length ? 
-      	 suitors.map( suitor => (<li key={suitor.id}> {suitor.message}</li>)) : null
+      	 suitors.map( suitor => (<button key={suitor.id} onClick={this.hookBubble} value={suitor.message}> {suitor.message} </button>)) : null
       }
-      </ul>
+      {
+        this.state.hookedMessage ?
+        <div className="hook-a-bubble">
+          <p> are you sure you want to hook the bubble that reads "{this.state.hookedMessage}"? <br/>
+          you can only reply to one bubble, and once you pick one, you won't have access to the others anymore.
+          </p>
+          <button onClick={this.handleYes}>yes</button><button onClick={this.handleNo}>no</button>
+        </div>
+         : null
+      }
       </div>
   		)
   }

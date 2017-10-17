@@ -5,7 +5,7 @@ module.exports = router
 //get a single bubble /api/bubbles/:bubbleId
 
 router.get('/:bubbleId', (req, res, next) => {
-  const bubbleId = req.params.bubbleId
+  const bubbleId = req.params.bubbleId;
   Bubble.findById(bubbleId)
   .then( (bubble) => {
   	if(req.user){ //AND bubble is not expired -- write this later
@@ -17,6 +17,21 @@ router.get('/:bubbleId', (req, res, next) => {
   .catch(next);
 })
 
+
+//update a bubble
+
+router.put('/:bubbleId', (req, res, next) => {
+  const bubbleId = req.params.bubbleId;
+
+  Bubble.findById(bubbleId)
+  .then( (bubble) => {
+    return bubble.update(req.body)
+  })
+  .then((updatedBubble) => {
+    res.json(updatedBubble)
+  })
+  .catch(next);
+})
 // post a new first bubble
 
 router.post('/new-bubble', (req, res, next) => {
