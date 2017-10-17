@@ -23,10 +23,13 @@ class SingleBubble extends Component {
   handleSubmit(e) {
     preventDefault(e);
     //thunk that updates bubble goes here. 
+
+    //delete this
   }
 
   handleYes(e){
     console.log('MESSAGE HOOKED')
+    //thunk that updates bubble goes here.
   }
 
   handleNo(e){
