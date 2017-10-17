@@ -23,10 +23,17 @@ You just have to jump in -- there's no long profile to fill out, because who you
 ## dev notes:
 
 _round 1 mvp_
+
    users can view all the messages in an ocean, 
+   
    users can write messages, 
+   
    users can write responses, 
+   
    users can choose a response
+   
    users can have a conversation
+   
 _round 2 functionality_
+
   users can block/filter other users from oceans 
