@@ -24,7 +24,7 @@ You just have to jump in -- there's no long profile to fill out, because who you
 
 _round 1 mvp_
 
-  ~~users can view all the messages in an ocean, ~~
+  ~~users can view all the messages in an ocean,~~
    
    ~~users can write messages,~~ 
    
