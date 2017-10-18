@@ -67,7 +67,6 @@ router.delete('/:bubbleId', (req, res, next) => {
 //get all unHooked bubbles associated with a bubble
 
 router.get('/:bubbleId/suitors', (req, res, next) => {
-  console.log('suitor route!')
   const bubbleId = req.params.bubbleId
   Bubble.findAll({where: {
     isHooked: false, 
@@ -82,3 +81,27 @@ router.get('/:bubbleId/suitors', (req, res, next) => {
   })
   .catch(next);
 })
+
+router.get('/:bubbleId/brook', (req, res, next) => {
+  const bubbleId = req.params.bubbleId;
+   Bubble.findById(bubbleId)
+   .then((bubble) => {
+    if (bubble.brookId){
+      return Bubble.findAll({
+        where: { brookId: bubble.brookId}
+      })
+    }else{
+      next(new Error('there is no brook here'))
+    }
+   })
+   .then((bubbles) => {
+     res.json(bubbles)
+   })
+   .catch(next);
+
+})
+
+
+
+
+

@@ -23,7 +23,7 @@ export const postNewBrook = (brook) => {
 }
 export const fetchOneBrook = (brookId) => {
   return function thunk(dispatch) {
-  	return axios.get(`/api/brookRoute`, brookId)
+  	return axios.get(`/api/bubbles/`, brookId)
   	.then( res => dispatch(getOneBrook(res.data)))
     .catch((error) => { console.log(error); })
   }
