@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {  fetchOneBubble, fetchSuitors } from '../store'
+import {  fetchOneBubble, fetchSuitors, updateOneBubble } from '../store'
 
 class SingleBubble extends Component {
   constructor(props) {
@@ -20,16 +20,22 @@ class SingleBubble extends Component {
 
   }
 
-  handleSubmit(e) {
-    preventDefault(e);
-    //thunk that updates bubble goes here. 
+  // handleSubmit(e) {
+  //   preventDefault(e);
+  //   //thunk that updates bubble goes here. 
 
-    //delete this
-  }
+  //   //delete this
+  // }
 
   handleYes(e){
     console.log('MESSAGE HOOKED')
+    //create brook -- make brook thunks
     //thunk that updates bubble goes here.
+    // 1. update head bubble with new brookID, and isHooked
+    //2. update hooked bubble with new brookId, and isHooked
+
+
+
   }
 
   handleNo(e){
@@ -91,7 +97,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   loadOneOcean(oceanId){ return dispatch(fetchOneOcean(oceanId))}, 
   loadOneBubble(bubbleId){ return dispatch(fetchOneBubble(bubbleId))},
-  loadSuitors(bubbleId){ return dispatch(fetchSuitors(bubbleId))}
+  loadSuitors(bubbleId){ return dispatch(fetchSuitors(bubbleId))}, 
+  changeBubble(bubbleId, bubble){ return dispatch(updateOneBubble(bubbleId, bubble))}
 })
 
 export default connect(mapState, mapDispatch)(SingleBubble)

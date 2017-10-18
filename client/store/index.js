@@ -7,8 +7,9 @@ import singleOcean from './singleOcean'
 import oceanBubbles from './oceanBubbles'
 import singleBubble from './singleBubble'
 import bubbleSuitors from './bubbleSuitors'
+import singleBrook from './singleBrook'
 
-const reducer = combineReducers({user, allOceans, singleOcean, oceanBubbles, singleBubble, bubbleSuitors})
+const reducer = combineReducers({user, allOceans, singleOcean, oceanBubbles, singleBubble, bubbleSuitors, singleBrook})
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
 
@@ -19,3 +20,4 @@ export * from './singleOcean'
 export * from './oceanBubbles'
 export * from './singleBubble'
 export * from './bubbleSuitors'
+export * from './singleBrook.js'

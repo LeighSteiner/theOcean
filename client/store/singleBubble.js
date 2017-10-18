@@ -36,8 +36,8 @@ export const makeNewFirstBubble = (bubble) => {
   }
 }
 
-//look at some examples of THUNK PUTS
-export const updateOneBubble = (bubbleId) => {
+//look at some examples of THUNK PUTS -- slydv change slide 
+export const updateOneBubble = (bubbleId, bubble) => {
   return function thunk(dispatch) {
     return axios.put(`/api/bubbles/${bubbleId}`,bubble)
     .then( res => dispatch(updateBubble(res.data)))
