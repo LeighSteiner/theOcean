@@ -34,6 +34,7 @@ class Routes extends Component {
                   <Route path='/oceans/:oceanId' component={SingleOcean}/>
                   <Route path='/bubbles/:bubbleId' component={SingleBubble}/>
                   <Route path='/home' component={UserHome} />
+                  <Route component={ViewAllOceans} />
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
