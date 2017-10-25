@@ -10,7 +10,6 @@ class SingleBubble extends Component {
       hookedMessage: ""
     };
     this.hookBubble = this.hookBubble.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleYes = this.handleYes.bind(this);
     this.handleNo = this.handleNo.bind(this);
   }
@@ -19,13 +18,6 @@ class SingleBubble extends Component {
      this.setState({ hookedMessage: e.target.value })
 
   }
-
-  // handleSubmit(e) {
-  //   preventDefault(e);
-  //   //thunk that updates bubble goes here. 
-
-  //   //delete this
-  // }
 
   handleYes(e){
     console.log('MESSAGE HOOKED')

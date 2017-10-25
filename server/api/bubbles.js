@@ -82,24 +82,26 @@ router.get('/:bubbleId/suitors', (req, res, next) => {
   .catch(next);
 })
 
-router.get('/:bubbleId/brook', (req, res, next) => {
-  const bubbleId = req.params.bubbleId;
-   Bubble.findById(bubbleId)
-   .then((bubble) => {
-    if (bubble.brookId){
-      return Bubble.findAll({
-        where: { brookId: bubble.brookId}
-      })
-    }else{
-      next(new Error('there is no brook here'))
-    }
-   })
-   .then((bubbles) => {
-     res.json(bubbles)
-   })
-   .catch(next);
+//brook stuff -- now see brooks.js
 
-})
+// router.get('/:bubbleId/brook', (req, res, next) => {
+//   const bubbleId = req.params.bubbleId;
+//    Bubble.findById(bubbleId)
+//    .then((bubble) => {
+//     if (bubble.brookId){
+//       return Bubble.findAll({
+//         where: { brookId: bubble.brookId}
+//       })
+//     }else{
+//       next(new Error('there is no brook here'))
+//     }
+//    })
+//    .then((bubbles) => {
+//      res.json(bubbles)
+//    })
+//    .catch(next);
+
+// })
 
 
 
