@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {  fetchOneBubble, fetchSuitors, updateOneBubble } from '../store'
+import {  fetchOneBubble, 
+          fetchSuitors, 
+          updateOneBubble,
+          postNewBrook } from '../store'
 
 class SingleBubble extends Component {
   constructor(props) {
@@ -25,8 +28,9 @@ class SingleBubble extends Component {
     //thunk that updates bubble goes here.
     // 1. update head bubble with new brookID, and isHooked
     //2. update hooked bubble with new brookId, and isHooked
-
-
+    this.props.createBrook()
+    .then(() => {console.log('BROOK IS ON STATE', this.props.sinlgeBrook)})
+    .then(() => {})
 
   }
 
@@ -82,7 +86,8 @@ class SingleBubble extends Component {
 const mapState = state => ({
   singleBubble: state.singleBubble, 
   user: state.user, 
-  bubbleSuitors: state.bubbleSuitors
+  bubbleSuitors: state.bubbleSuitors, 
+  brook: state.brook
 
 })
 
@@ -90,7 +95,8 @@ const mapDispatch = dispatch => ({
   loadOneOcean(oceanId){ return dispatch(fetchOneOcean(oceanId))}, 
   loadOneBubble(bubbleId){ return dispatch(fetchOneBubble(bubbleId))},
   loadSuitors(bubbleId){ return dispatch(fetchSuitors(bubbleId))}, 
-  changeBubble(bubbleId, bubble){ return dispatch(updateOneBubble(bubbleId, bubble))}
+  changeBubble(bubbleId, bubble){ return dispatch(updateOneBubble(bubbleId, bubble))}, 
+  createBrook(){ return dispatch(postNewBrook())}
 })
 
 export default connect(mapState, mapDispatch)(SingleBubble)

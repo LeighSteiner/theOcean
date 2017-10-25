@@ -26,7 +26,7 @@ export const postNewBrook = () => {
   }
 }
 
-export const fetchOneBrook(brookId) => {
+export const fetchOneBrook = (brookId) => {
   return function thunk(dispatch) {
     return axios.get(`/api/brooks/${brookId}`)
     .then ( res => dispatch(getOneBrook(res.data)))

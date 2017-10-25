@@ -18,7 +18,15 @@ const gotNewBrookBubble = (bubble) => ({type: GOT_NEW_BROOK_BUBBLE, bubble})
 
 //thunk creators
 
-export const fetchBrookBubbles = (brookId)
+export const fetchBrookBubbles = (brookId) => {
+  return function thunk(dispatch) {
+  	return axios.get(`/api/${brookId}/bubbles`)
+  	.then( (res) => dispatch(getBrookBubbles(res.data)))
+  	.catch((error) => { console.log(error); })
+  }
+}
+
+//do add new bubble later -- like when you actually have a brookview
 
 //reducer 
 
