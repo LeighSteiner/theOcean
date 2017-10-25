@@ -67,17 +67,19 @@ router.delete('/:bubbleId', (req, res, next) => {
 //get all unHooked bubbles associated with a bubble
 
 router.get('/:bubbleId/suitors', (req, res, next) => {
+
   const bubbleId = req.params.bubbleId
   Bubble.findAll({where: {
     isHooked: false, 
     headId: bubbleId  //headId association
   }})
-  .then(( suitors ) => { //add security later
-     if (suitors[0].headId == req.user.id){
+  .then(( suitors ) => { //add security back in when you unfuck your database
+
+          // if (suitors[0].headId == req.user.id){
        res.json(suitors)
-     }else{
-      next(new Error('this is not your dating pool'))
-     }
+     // }else{
+      // next(new Error('this is not your dating pool'))
+     // }
   })
   .catch(next);
 })

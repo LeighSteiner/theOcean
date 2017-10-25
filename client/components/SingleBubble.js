@@ -24,14 +24,7 @@ class SingleBubble extends Component {
 
   handleYes(e){
     console.log('MESSAGE HOOKED')
-    //create brook -- make brook thunks
-    //thunk that updates bubble goes here.
-    // 1. update head bubble with new brookID, and isHooked
-    //2. update hooked bubble with new brookId, and isHooked
     this.props.createBrook()
-    .then(() => {console.log('BROOK IS ON STATE', this.props.sinlgeBrook)})
-    .then(() => {})
-
   }
 
   handleNo(e){
@@ -52,7 +45,7 @@ class SingleBubble extends Component {
   }
 
   render() {
-    console.log('STATE', this.state)
+    console.log('PROPS', this.props)
     const bubble = this.props.singleBubble;
     const suitors = this.props.bubbleSuitors;
 
@@ -87,7 +80,7 @@ const mapState = state => ({
   singleBubble: state.singleBubble, 
   user: state.user, 
   bubbleSuitors: state.bubbleSuitors, 
-  brook: state.brook
+  singleBrook: state.singleBrook
 
 })
 
