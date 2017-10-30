@@ -10,7 +10,8 @@ class SingleBubble extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hookedMessage: ""
+      hookedMessage: "", 
+      hookedId: null
     };
     this.hookBubble = this.hookBubble.bind(this);
     this.handleYes = this.handleYes.bind(this);
@@ -18,24 +19,32 @@ class SingleBubble extends Component {
   }
 
   hookBubble(e) {
-     this.setState({ hookedMessage: e.target.value })
+     this.setState({ hookedMessage: e.target.value, hookedId: e.target.id })
 
   }
 
   handleYes(e){
     this.props.createBrook()
     .then((action) => {
+
       let newBubble = {...this.props.singleBubble, isHooked: true, brookId : action.brook.id}
       return this.props.changeBubble(this.props.singleBubble.id, newBubble)
     })
+    .then((action) => {
+      
+      let responseBubble = {isHooked: true, brookId: action.bubble.brookId}
+      return this.props.changeBubble(this.state.hookedId, responseBubble)
+    })
     .then(() => {
-      console.log('hello')
+      console.log('done -- now you should be redirected to your brook view')
+      //redirect to brook view. 
+      //maybe you should make a brook view
     })
 
   }
 
   handleNo(e){
-    this.setState({hookedMessage: ""})
+    this.setState({hookedMessage: "", hookedId: null})
   }
 
   componentDidMount() {
@@ -47,12 +56,12 @@ class SingleBubble extends Component {
   	  }
       if(action.bubble.isHead && action.bubble.isHooked){
         //loadStream() ==> write this function (redirect to stream component?)
+        //alternately -- load 'this bubble has been hooked' component
       }
   	})
   }
 
   render() {
-    console.log('PROPS', this.props)
     const bubble = this.props.singleBubble;
     const suitors = this.props.bubbleSuitors;
 
@@ -66,7 +75,7 @@ class SingleBubble extends Component {
 
       {
       	suitors && suitors.length ? 
-      	 suitors.map( suitor => (<button key={suitor.id} onClick={this.hookBubble} value={suitor.message}> {suitor.message} </button>)) : null
+      	 suitors.map( suitor => (<button key={suitor.id} id={suitor.id} onClick={this.hookBubble} value={suitor.message}> {suitor.message} </button>)) : null
       }
       {
         this.state.hookedMessage ?
