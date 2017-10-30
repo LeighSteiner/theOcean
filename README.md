@@ -34,6 +34,8 @@ _round 1 mvp_
    
    users can have a conversation
    
+   users can see all of their messages
+   
 _round 2 functionality_
 
   users can block/filter other users from oceans 
