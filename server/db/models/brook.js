@@ -4,9 +4,14 @@ const db = require('../db')
 const Brook = db.define('brook', {
   //owner id association
   //hooked bubble id association
-  creationDate: {
-  	type: Sequelize.DATE,
-  	defaultValue: Sequelize.NOW,
+  //get rid of creation date replace with something else
+  // creationDate: {
+  // 	type: Sequelize.DATE,
+  // 	defaultValue: Sequelize.NOW,
+  // }
+  numBubbles: {
+  	type: Sequelize.INTEGER, 
+  	defaultValue: 2
   }
 })
 

@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
+import store, { fetchUserMessageList } from '../store';
+
+//rewrite as smart component 
 /**
  * COMPONENT
  */

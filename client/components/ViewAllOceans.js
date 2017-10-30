@@ -6,8 +6,8 @@ import { fetchOceans } from '../store'
 
 class ViewAllOceans extends Component {
   constructor(props) {
-  	super(props);
-  	this.state = {};
+    super(props);
+    this.state = {};
   }
 
   componentDidMount() {
@@ -15,8 +15,8 @@ class ViewAllOceans extends Component {
   }
 
   render() {
-  	const oceans = this.props.allOceans
-  	return (
+    const oceans = this.props.allOceans
+    return (
       <div className="view-all-oceans">
        <h3>Every Ocean in the Universe</h3>
         <div className="oceans-list">
@@ -25,7 +25,7 @@ class ViewAllOceans extends Component {
         }
         </div>
       </div>
-  	);
+    );
   }
 }
 
