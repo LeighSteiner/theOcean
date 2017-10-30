@@ -75,7 +75,7 @@ router.get('/:bubbleId/suitors', (req, res, next) => {
   }})
   .then(( suitors ) => { //add security back in when you unfuck your database
 
-          // if (suitors[0].headId == req.user.id){
+  // if (suitors[0].headId == req.user.id){ //this is a bad test -- how to access users who should see this
        res.json(suitors)
      // }else{
       // next(new Error('this is not your dating pool'))
