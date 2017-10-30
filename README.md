@@ -28,7 +28,7 @@ _round 1 mvp_
    
    ~~users can write messages,~~ 
    
-   users can write responses, 
+   ~~users can write responses,~~ 
    
    ~~users can choose a response~~
    
