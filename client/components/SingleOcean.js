@@ -17,7 +17,7 @@ class SingleOcean extends Component {
 
   render() {
   	const ocean = this.props.singleOcean
-  	const bubbles = this.props.oceanBubbles 
+  	const bubbles = this.props.oceanBubbles.filter((ocean) => ocean.isHead) 
 
     console.log('PROPS', this.props)
   	return (

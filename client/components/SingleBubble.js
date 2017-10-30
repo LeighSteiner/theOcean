@@ -25,6 +25,15 @@ class SingleBubble extends Component {
   handleYes(e){
     console.log('MESSAGE HOOKED')
     this.props.createBrook()
+    .then((brook) => {
+      console.log('HI')
+      let newBubble = {...this.props.singleBubble, isHooked: true, brookId : brook.id}
+      return this.props.changeBubble(this.props.singleBubble.id, newBubble)
+    })
+    .then(() => {
+      console.log('hello')
+    })
+
   }
 
   handleNo(e){
@@ -39,8 +48,9 @@ class SingleBubble extends Component {
   	  	return this.props.loadSuitors(bubbleId)
   	  }
       if(action.bubble.isHead && action.bubble.isHooked){
-        //loadStream() ==> write this function
+        //loadStream() ==> write this function (redirect to stream component?)
       }
+      console.log('bubble loaded', action.bubble.isHooked)
   	})
   }
 
@@ -89,7 +99,7 @@ const mapDispatch = dispatch => ({
   loadOneBubble(bubbleId){ return dispatch(fetchOneBubble(bubbleId))},
   loadSuitors(bubbleId){ return dispatch(fetchSuitors(bubbleId))}, 
   changeBubble(bubbleId, bubble){ return dispatch(updateOneBubble(bubbleId, bubble))}, 
-  createBrook(){ return dispatch(postNewBrook())}
+  createBrook(){ return dispatch(postNewBrook())}, 
 })
 
 export default connect(mapState, mapDispatch)(SingleBubble)

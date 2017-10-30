@@ -16,7 +16,7 @@ const oneBubble = {}
 
 const getOneBubble = (bubble) => ({type: GET_ONE_BUBBLE, bubble})
 const newFirstBubble = (bubble) => ({type: NEW_FIRST_BUBBLE, bubble})
-const updateBubble = (bubbleId) => ({type: UPDATE_BUBBLE, bubbleId})
+const updateBubble = (bubble) => ({type: UPDATE_BUBBLE, bubble})
 
 //thunk creator 
 
