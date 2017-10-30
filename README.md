@@ -30,7 +30,7 @@ _round 1 mvp_
    
    users can write responses, 
    
-   users can choose a response
+   ~~users can choose a response~~
    
    users can have a conversation
    
