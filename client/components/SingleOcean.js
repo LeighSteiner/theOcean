@@ -30,7 +30,12 @@ class SingleOcean extends Component {
       <ul>
        {
       	bubbles && bubbles.length ? 
-      	bubbles.map ( bubble => ( <li key={bubble.id}>{bubble.message} </li> )) : null
+      	bubbles.map ( bubble => ( 
+          <li key={bubble.id}>
+          <Link to={`/bubbles/${bubble.id}`}>
+           {bubble.message} 
+          </Link>
+          </li> )) : null
        }
       </ul>
       </div> : null

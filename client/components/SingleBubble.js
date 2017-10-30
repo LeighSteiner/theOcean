@@ -23,11 +23,9 @@ class SingleBubble extends Component {
   }
 
   handleYes(e){
-    console.log('MESSAGE HOOKED')
     this.props.createBrook()
-    .then((brook) => {
-      console.log('HI')
-      let newBubble = {...this.props.singleBubble, isHooked: true, brookId : brook.id}
+    .then((action) => {
+      let newBubble = {...this.props.singleBubble, isHooked: true, brookId : action.brook.id}
       return this.props.changeBubble(this.props.singleBubble.id, newBubble)
     })
     .then(() => {
@@ -50,7 +48,6 @@ class SingleBubble extends Component {
       if(action.bubble.isHead && action.bubble.isHooked){
         //loadStream() ==> write this function (redirect to stream component?)
       }
-      console.log('bubble loaded', action.bubble.isHooked)
   	})
   }
 
