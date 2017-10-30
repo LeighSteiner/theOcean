@@ -84,7 +84,8 @@ router.get('/ocean/:oceanId/bubbles', (req, res, next) => {
   Bubble.findAll({ where: { oceanId }})
   .then( (bubbles) => {
     if(req.user){
-     res.json(bubbles)
+     let headBubbles = bubbles.filter((bubble) => { return bubble.isHead})
+     res.json(headBubbles)
     }else{
      next(new Error('you have to sign in to see the bubbles'))
     }
