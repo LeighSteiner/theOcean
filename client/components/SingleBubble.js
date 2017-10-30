@@ -4,18 +4,22 @@ import { Link } from 'react-router-dom';
 import {  fetchOneBubble, 
           fetchSuitors, 
           updateOneBubble,
-          postNewBrook } from '../store'
+          postNewBrook,
+          postNewSuitor } from '../store'
 
 class SingleBubble extends Component {
   constructor(props) {
     super(props);
     this.state = {
       hookedMessage: "", 
-      hookedId: null
+      hookedId: null, 
+      suitorText: "",
     };
     this.hookBubble = this.hookBubble.bind(this);
     this.handleYes = this.handleYes.bind(this);
     this.handleNo = this.handleNo.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   hookBubble(e) {
@@ -23,7 +27,7 @@ class SingleBubble extends Component {
 
   }
 
-  handleYes(e){
+  handleYes(e) {
     this.props.createBrook()
     .then((action) => {
 
@@ -43,15 +47,35 @@ class SingleBubble extends Component {
 
   }
 
-  handleNo(e){
+  handleNo(e) {
     this.setState({hookedMessage: "", hookedId: null})
+  }
+
+  handleChange(e) {
+    this.setState({suitorText: e.target.value})
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let suitor = {
+      message: this.state.suitorText, 
+      ocean: this.props.singleBubble.oceanId, 
+      userId: this.props.user.id, 
+      headId: this.props.singleBubble.id, 
+      isHead: false, 
+      isHooked: false, 
+    }
+    this.props.createSuitor(suitor)
+    .then(() => {
+      this.setState({suitorText: ""})
+    });
   }
 
   componentDidMount() {
   	const bubbleId = +this.props.match.params.bubbleId
   	this.props.loadOneBubble(bubbleId)
   	.then((action) => {
-  	  if(action.bubble.isHead && !action.bubble.isHooked ){
+  	  if(action.bubble.isHead && !action.bubble.isHooked && action.bubble.userId === this.props.user.id ){
   	  	return this.props.loadSuitors(bubbleId)
   	  }
       if(action.bubble.isHead && action.bubble.isHooked){
@@ -65,6 +89,7 @@ class SingleBubble extends Component {
     const bubble = this.props.singleBubble;
     const suitors = this.props.bubbleSuitors;
 
+
   	return(
       <div className="single-bubble">
       {
@@ -74,8 +99,16 @@ class SingleBubble extends Component {
       }
 
       {
-      	suitors && suitors.length ? 
+      	suitors && suitors.length && this.props.user.id === bubble.userId ? 
       	 suitors.map( suitor => (<button key={suitor.id} id={suitor.id} onClick={this.hookBubble} value={suitor.message}> {suitor.message} </button>)) : null
+      }
+      {
+        this.props.user.id !== bubble.userId ? 
+        <form className="write-response" onSubmit={this.handleSubmit}>
+          <label>Blow a bubble, see if it gets hooked</label>
+          <input name="suitor" onChange={this.handleChange} value={this.state.suitorText}/>
+          <button type="submit">blow!</button>
+        </form>:null
       }
       {
         this.state.hookedMessage ?
@@ -106,6 +139,7 @@ const mapDispatch = dispatch => ({
   loadSuitors(bubbleId){ return dispatch(fetchSuitors(bubbleId))}, 
   changeBubble(bubbleId, bubble){ return dispatch(updateOneBubble(bubbleId, bubble))}, 
   createBrook(){ return dispatch(postNewBrook())}, 
+  createSuitor(bubble){ return dispatch(postNewSuitor(bubble))}
 })
 
 export default connect(mapState, mapDispatch)(SingleBubble)

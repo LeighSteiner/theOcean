@@ -44,7 +44,6 @@ class NewBubbleForm extends Component {
     ocean: this.state.ocean,
     userId: 0,
      })
-    console.log('STATE AFTER SUBMIT',this.state)
    })
    
   }
