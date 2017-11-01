@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchOneBrook, 
 	     fetchBrookBubbles, 
-	     moreBrookBubbles } from '../store';
+	     moreBrookBubbles,
+	     changeOneBrook } from '../store';
 
 class SingleBrook extends Component {
   constructor(props){
@@ -19,8 +20,16 @@ class SingleBrook extends Component {
 
   handleSubmit(e) {
   	e.preventDefault();
-  	//send new bubble from this.state.draft
-  	//update brook with numBubbles
+  	const newBubble = {
+  	  message: this.state.draft, 
+  	  isHead: false, 
+  	  isHooked: true, 
+  	  userId: this.props.user.id, 
+  	  brookId: this.props.singleBrook.id
+  	}
+
+  	const updatedBrook = { numBubbles: this.props.singleBrook.numBubbles++}
+  	this.props.postNewBrookBubble(newBubble);
   }
 
   componentDidMount() {
@@ -31,7 +40,7 @@ class SingleBrook extends Component {
   componentWillReceiveProps(nextProps){
     //if nextProps doesnt equal this.props, load brook bubbles 
     if(nextProps.brookBubbles.length !== this.props.brookBubbles.length){
-    
+      this.props.loadBrookBubbles(brookId);
     }
   }
 
@@ -39,7 +48,7 @@ class SingleBrook extends Component {
     return (
       <div className="single-brook">
         <h2>your path so far</h2> 
-        <form className="new-message" onSumbit={this.handleSubmit}>
+        <form className="new-message" onSubmit={this.handleSubmit}>
           <label>Reply: </label>
           <input name="reply" onChange={this.handleChange} />
           <button type="submit">blow!</button>
@@ -56,7 +65,7 @@ class SingleBrook extends Component {
 
 const mapState = state => ({
   user: state.user,  
-  singleBrook: state.singleBrook
+  singleBrook: state.singleBrook, 
   brookBubbles: state.brookBubbles
 })
 
