@@ -2,9 +2,10 @@ import axios from 'axios';
 
 //action types 
 
-const GET_BROOK_BUBBLES = 'GET_BROOK_BUBBLES'
-const GOT_NEW_BROOK_BUBBLE = 'GOT_NEW_BROOK_BUBBLE'
+const GET_BROOK_BUBBLES = 'GET_BROOK_BUBBLES';
+const GOT_NEW_BROOK_BUBBLE = 'GOT_NEW_BROOK_BUBBLE';
 // const DELETED_BROOK_BUBBLE = 'DELETED_BROOK_BUBBLE'
+// const MAKE_NEW_BROOK_BUBBLE = 'MAKE_NEW_BROOK_BUBBLE';
 
 //initial state
 
@@ -14,6 +15,7 @@ const brookBubbles = []
 
 const getBrookBubbles = (bubbles) => ({type: GET_BROOK_BUBBLES, bubbles})
 const gotNewBrookBubble = (bubble) => ({type: GOT_NEW_BROOK_BUBBLE, bubble})
+// const makeNewBrookBubble = (bubble) => ({ })
 // const deletedBrookBubble = (bubble) => ({type: DELETED_BROOK_BUBBLE, bubble})
 
 //thunk creators
@@ -27,6 +29,13 @@ export const fetchBrookBubbles = (brookId) => {
 }
 
 //do add new bubble later -- like when you actually have a brookview
+ export const moreBrookBubbles = (bubble) => {
+  return function thunk(dispatch) {
+    return axios.post('/new-bubble', bubble)
+    .then( (res) => dispatch(gotNewBrookBubble(res.data)))
+    .catch((error) => { console.log(error); })
+  }
+ }
 
 //reducer 
 

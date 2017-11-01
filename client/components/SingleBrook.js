@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchOneBrook, 
+	     fetchBrookBubbles, 
+	     moreBrookBubbles } from '../store';
 
 class SingleBrook extends Component {
   constructor(props){
@@ -21,12 +24,15 @@ class SingleBrook extends Component {
   }
 
   componentDidMount() {
-    //load brook 
-    //load brook bubbles
-    //not order dependent 
+    const brookId = this.props.match.params.brookId
+    this.props.loadOneBrook(brookId);
+    this.props.loadBrookBubbles(brookId); 
   } 
   componentWillReceiveProps(nextProps){
     //if nextProps doesnt equal this.props, load brook bubbles 
+    if(nextProps.brookBubbles.length !== this.props.brookBubbles.length){
+    
+    }
   }
 
   render() {
@@ -55,9 +61,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-	//load brook
-	//load brook bubbles
-	// send new bubble 
+	loadOneBrook(brookId){ return dispatch(fetchOneBrook(brookId)) },
+    loadBrookBubbles(brookId){ return dispatch(fetchBrookBubbles(brookId)) },
+	postNewBrookBubble(bubble){ return dispatch(moreBrookBubbles(bubble))} 
 })
 
 export default connect(mapState, mapDispatch)(SingleBrook)

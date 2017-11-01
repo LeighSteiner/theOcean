@@ -5,7 +5,7 @@ import {  fetchOneBubble,
           fetchSuitors, 
           updateOneBubble,
           postNewBrook,
-          postNewSuitor } from '../store'
+          postNewSuitor } from '../store';
 
 class SingleBubble extends Component {
   constructor(props) {
