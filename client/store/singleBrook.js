@@ -53,7 +53,7 @@ export default function (state = oneBrook, action) {
   	case GET_ONE_BROOK:
   	  return action.brook;
     case UPDATE_BROOK:
-      return {...state, ...action.brook}
+      return action.brook;
   	default:
   	return state;
   }

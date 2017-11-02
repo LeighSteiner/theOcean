@@ -22,17 +22,18 @@ const gotNewBrookBubble = (bubble) => ({type: GOT_NEW_BROOK_BUBBLE, bubble})
 
 export const fetchBrookBubbles = (brookId) => {
   return function thunk(dispatch) {
-  	return axios.get(`/api/${brookId}/bubbles`)
+  	return axios.get(`/api/brooks/${brookId}/bubbles`)
   	.then( (res) => dispatch(getBrookBubbles(res.data)))
   	.catch((error) => { console.log(error); })
   }
 }
 
-//do add new bubble later -- like when you actually have a brookview
  export const moreBrookBubbles = (bubble) => {
   return function thunk(dispatch) {
-    return axios.post('/new-bubble', bubble)
-    .then( (res) => dispatch(gotNewBrookBubble(res.data)))
+    return axios.post('/api/bubbles/new-bubble', bubble)
+    .then( (res) => {
+      dispatch(gotNewBrookBubble(res.data))
+    })
     .catch((error) => { console.log(error); })
   }
  }

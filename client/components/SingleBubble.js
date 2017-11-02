@@ -39,14 +39,15 @@ class SingleBubble extends Component {
       let responseBubble = {isHooked: true, brookId: action.bubble.brookId}
       return this.props.changeBubble(this.state.hookedId, responseBubble)
     })
-    .then(action) => {
-      return this.props.addBrookOwners({sourceUserId:this.props.user.id, hookedUserId: action.bubble.userId}, action.bubble.brookId)
-    }
-    .then(() => {
+    // .then((action) => {
+    //   return this.props.addBrookOwners({...this.props.singleBrook, sourceUserId:this.props.user.id, hookedUserId: action.bubble.userId}, action.bubble.brookId)
+    // })
+     .then(() => {
       console.log('done -- now you should be redirected to your brook view')
-      //redirect to brook view by changing url. 
+      //redirect to brook view by changing url . 
       //maybe you should make a brook view
     })
+   
 
   }
 

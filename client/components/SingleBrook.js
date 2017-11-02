@@ -12,6 +12,7 @@ class SingleBrook extends Component {
       draft: ""
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   
   handleChange(e) {
@@ -20,16 +21,19 @@ class SingleBrook extends Component {
 
   handleSubmit(e) {
   	e.preventDefault();
-  	const newBubble = {
+  	const response = {
   	  message: this.state.draft, 
   	  isHead: false, 
   	  isHooked: true, 
   	  userId: this.props.user.id, 
   	  brookId: this.props.singleBrook.id
   	}
-
-  	const updatedBrook = { numBubbles: this.props.singleBrook.numBubbles++}
-  	this.props.updatedBrook///UPDATE BROOK
+  	// const updatedBrook = { numBubbles: this.props.singleBrook.numBubbles++}
+  	this.props.postNewBrookBubble(response)
+  	.then(() => {
+  		this.setState({draft: ""});
+  	})
+  	// this.props.updateBrook(updatedBrook, this.props.singleBrook.id);
   }
 
   componentDidMount() {
@@ -39,18 +43,31 @@ class SingleBrook extends Component {
   } 
   componentWillReceiveProps(nextProps){
     //if nextProps doesnt equal this.props, load brook bubbles 
-    if(nextProps.brookBubbles.length !== this.props.brookBubbles.length){
-      this.props.loadBrookBubbles(brookId);
-    }
+    // if(nextProps.brookBubbles.length !== this.props.brookBubbles.length){
+    //   this.props.loadBrookBubbles(brookId);
+    // }
   }
 
   render() {
+  	const bubbles = this.props.brookBubbles
     return (
       <div className="single-brook">
         <h2>your path so far</h2> 
-        <form className="new-message" onSubmit={this.handleSubmit}>
+        <ul>
+        {
+          bubbles && bubbles.length ?
+            bubbles.map(bubble => (
+             <li key={bubble.id} className="message-in-thread">
+              Sent: {bubble.createdAt}
+              <br/>
+              Spoken: {bubble.message}
+             </li>
+            	)) :null
+        }
+        </ul> 
+        <form className="new-message" onSubmit={this.handleSubmit} >
           <label>Reply: </label>
-          <input name="reply" onChange={this.handleChange} />
+          <input name="reply" onChange={this.handleChange} value={this.state.draft}/>
           <button type="submit">blow!</button>
         </form>
       </div>
@@ -72,7 +89,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
 	loadOneBrook(brookId){ return dispatch(fetchOneBrook(brookId)) },
     loadBrookBubbles(brookId){ return dispatch(fetchBrookBubbles(brookId)) },
-	postNewBrookBubble(bubble){ return dispatch(moreBrookBubbles(bubble))} 
+	postNewBrookBubble(bubble){ return dispatch(moreBrookBubbles(bubble))},
+	updateBrook(brook, brookId){ return changeOneBrook(brook, brookId)} 
 })
 
 export default connect(mapState, mapDispatch)(SingleBrook)
