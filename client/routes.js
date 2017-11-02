@@ -4,7 +4,15 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, ViewAllOceans, SingleOcean, SingleBubble, NewBubbleForm } from './components'
+import { Main, 
+         Login, 
+         Signup, 
+         UserHome, 
+         ViewAllOceans, 
+         SingleOcean, 
+         SingleBubble, 
+         NewBubbleForm, 
+         SingleBrook } from './components'
 import {me} from './store'
 
 /**
@@ -33,6 +41,7 @@ class Routes extends Component {
                   <Route path='/universe' component={ViewAllOceans}/>
                   <Route path='/oceans/:oceanId' component={SingleOcean}/>
                   <Route path='/bubbles/:bubbleId' component={SingleBubble}/>
+                  <Route path='/brooks/:brookId' component={SingleBrook} />
                   <Route path='/home' component={UserHome} />
                   <Route component={ViewAllOceans} />
                 </Switch>

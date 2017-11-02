@@ -13,7 +13,7 @@ router.post('/new-brook', (req, res, next) => {
 router.get('/:brookId', (req, res, next) => {
 	Brook.findById(req.params.brookId)
 	.then( (brook) => {
-      if(req.user.id === brook.sourceUserId || req.user.id === brook.hookedUserId ) {
+      if( !brook.sourceUserId || (req.user.id === brook.sourceUserId || req.user.id === brook.hookedUserId) ) {
       	res.json(brook);
       }else{
       	next(new Error('this is not your brook!'))
@@ -25,7 +25,7 @@ router.get('/:brookId', (req, res, next) => {
 //find brook bubbles 
 router.get('/:brookId/bubbles', (req, res, next) => {
   Bubble.findAll({
-  	where: {brookId: req.params.brookId}
+  	where: {brookId: req.params.brookId}, order: [['createdAt']]
   })
   .then((bubbles) => {
   	res.json(bubbles)
@@ -36,7 +36,10 @@ router.get('/:brookId/bubbles', (req, res, next) => {
 //update brook -- probably just numBubbles
 
 router.put('/:brookId', (req, res, next) => {
-	Brook.update(req.body)
-	.then(brook => res.json(brook))
-	.catch(next);
+  Brook.findById(req.params.brookId)
+  .then((brook) => {
+    return brook.update(req.body);
+  })
+  .then(brook => res.json(brook))
+  .catch(next);
 })
