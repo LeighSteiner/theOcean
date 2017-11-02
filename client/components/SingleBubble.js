@@ -5,7 +5,8 @@ import {  fetchOneBubble,
           fetchSuitors, 
           updateOneBubble,
           postNewBrook,
-          postNewSuitor } from '../store';
+          postNewSuitor,
+          changeOneBrook } from '../store';
 
 class SingleBubble extends Component {
   constructor(props) {
@@ -30,7 +31,6 @@ class SingleBubble extends Component {
   handleYes(e) {
     this.props.createBrook()
     .then((action) => {
-
       let newBubble = {...this.props.singleBubble, isHooked: true, brookId : action.brook.id}
       return this.props.changeBubble(this.props.singleBubble.id, newBubble)
     })
@@ -39,9 +39,12 @@ class SingleBubble extends Component {
       let responseBubble = {isHooked: true, brookId: action.bubble.brookId}
       return this.props.changeBubble(this.state.hookedId, responseBubble)
     })
+    .then(action) => {
+      return this.props.addBrookOwners({sourceUserId:this.props.user.id, hookedUserId: action.bubble.userId}, action.bubble.brookId)
+    }
     .then(() => {
       console.log('done -- now you should be redirected to your brook view')
-      //redirect to brook view. 
+      //redirect to brook view by changing url. 
       //maybe you should make a brook view
     })
 
@@ -139,7 +142,8 @@ const mapDispatch = dispatch => ({
   loadSuitors(bubbleId){ return dispatch(fetchSuitors(bubbleId))}, 
   changeBubble(bubbleId, bubble){ return dispatch(updateOneBubble(bubbleId, bubble))}, 
   createBrook(){ return dispatch(postNewBrook())}, 
-  createSuitor(bubble){ return dispatch(postNewSuitor(bubble))}
+  createSuitor(bubble){ return dispatch(postNewSuitor(bubble))},
+  addBrookOwners(brook, brookId){ return dispatch(changeOneBrook(brook, brookId))},
 })
 
 export default connect(mapState, mapDispatch)(SingleBubble)

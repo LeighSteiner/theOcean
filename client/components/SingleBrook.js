@@ -29,7 +29,7 @@ class SingleBrook extends Component {
   	}
 
   	const updatedBrook = { numBubbles: this.props.singleBrook.numBubbles++}
-  	this.props.postNewBrookBubble(newBubble);
+  	this.props.updatedBrook///UPDATE BROOK
   }
 
   componentDidMount() {
