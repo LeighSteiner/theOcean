@@ -32,7 +32,7 @@ _round 1 mvp_
    
    ~~users can choose a response~~
    
-   users can have a conversation
+   ~~users can have a conversation~~
    
    users can see all of their messages
    
