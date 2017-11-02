@@ -50,19 +50,27 @@ class SingleBrook extends Component {
 
   render() {
   	const bubbles = this.props.brookBubbles
+    let person = "";
     return (
       <div className="single-brook">
         <h2>your path so far</h2> 
         <ul>
         {
           bubbles && bubbles.length ?
-            bubbles.map(bubble => (
+            bubbles.map(bubble => {
+              if (bubble.userId == this.props.user.id){
+                person = "Me"
+              }else{
+                person = "You"
+              }
+              return (
              <li key={bubble.id} className="message-in-thread">
+                <span>{person}</span><br/>
               Sent: {bubble.createdAt}
               <br/>
               Spoken: {bubble.message}
              </li>
-            	)) :null
+            	)}) :null
         }
         </ul> 
         <form className="new-message" onSubmit={this.handleSubmit} >
