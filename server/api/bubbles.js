@@ -2,6 +2,24 @@ const router = require('express').Router()
 const { Bubble } = require('../db/models')
 module.exports = router
 
+
+//get a user's collection of headBubbles
+
+router.get('/head-bubbles/:userId', (req, res, next) => {
+  const userId = req.params.userId
+  Bubble.findAll({where: {
+    userId: userId, 
+    isHead: true
+  }})
+  .then((bubbles) => {
+    if (req.user.id == userId || req.user.isAdmin){
+      res.json(bubbles)
+    }else{
+      next( new Error ('these are not your bubbles'))
+    }
+  })
+})
+
 //get a single bubble /api/bubbles/:bubbleId
 
 router.get('/:bubbleId', (req, res, next) => {

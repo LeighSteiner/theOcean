@@ -18,8 +18,7 @@ class SingleOcean extends Component {
   render() {
   	const ocean = this.props.singleOcean
   	const bubbles = this.props.oceanBubbles
-
-    console.log('PROPS', this.props)
+    
   	return (
   	 <div className="single-ocean">
      {

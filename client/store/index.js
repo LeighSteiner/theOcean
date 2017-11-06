@@ -10,6 +10,7 @@ import bubbleSuitors from './bubbleSuitors'
 import singleBrook from './singleBrook'
 import userMessageList from './userMessageList';
 import brookBubbles from './brookBubbles'
+import userHeadBubbles from './userHeadBubbles';
 
 const reducer = combineReducers({
 	user, 
@@ -19,7 +20,8 @@ const reducer = combineReducers({
 	singleBubble, 
 	bubbleSuitors, 
 	singleBrook,
-	brookBubbles
+	brookBubbles, 
+	userHeadBubbles
 })
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
@@ -34,3 +36,4 @@ export * from './bubbleSuitors'
 export * from './singleBrook.js'
 export * from './userMessageList'
 export * from './brookBubbles'
+export * from './userHeadBubbles'

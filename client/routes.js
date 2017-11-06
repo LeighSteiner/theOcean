@@ -12,7 +12,8 @@ import { Main,
          SingleOcean, 
          SingleBubble, 
          NewBubbleForm, 
-         SingleBrook } from './components'
+         SingleBrook, 
+         MyBubbleView } from './components'
 import {me} from './store'
 
 /**
@@ -42,6 +43,7 @@ class Routes extends Component {
                   <Route path='/oceans/:oceanId' component={SingleOcean}/>
                   <Route path='/bubbles/:bubbleId' component={SingleBubble}/>
                   <Route path='/brooks/:brookId' component={SingleBrook} />
+                  <Route path='/my-bubbles' component={MyBubbleView} />
                   <Route path='/home' component={UserHome} />
                   <Route component={ViewAllOceans} />
                 </Switch>
