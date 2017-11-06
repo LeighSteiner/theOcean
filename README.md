@@ -34,7 +34,7 @@ _round 1 mvp_
    
    ~~users can have a conversation~~
    
-   users can see all of their messages
+   ~~users can see all of their messages~~
    
 _round 2 functionality_
 
