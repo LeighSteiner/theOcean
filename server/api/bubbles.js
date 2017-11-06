@@ -9,13 +9,33 @@ router.get('/head-bubbles/:userId', (req, res, next) => {
   const userId = req.params.userId
   Bubble.findAll({where: {
     userId: userId, 
-    isHead: true
+    isHead: true,
+    isHooked: false
   }})
   .then((bubbles) => {
     if (req.user.id == userId || req.user.isAdmin){
       res.json(bubbles)
     }else{
       next( new Error ('these are not your bubbles'))
+    }
+  })
+  .catch(next)
+})
+
+//get a user's collection of brookHead bubbles 
+
+router.get('/brook-heads/:userId', (req, res, next) => {
+  const userId = req.params.userId
+  Bubble.findAll({where: {
+    userId: userId, 
+    isHead: true, 
+    isHooked: true
+  }})
+  .then((bubbles) => {
+    if (req.user.id == userId || req.user.isAdmin){
+      res.json(bubbles)
+    }else{
+      next(new Error('these are not your brooks'))
     }
   })
 })
