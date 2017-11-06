@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {  fetchOneBubble, 
           fetchSuitors, 
           updateOneBubble,
@@ -39,13 +39,8 @@ class SingleBubble extends Component {
       let responseBubble = {isHooked: true, brookId: action.bubble.brookId}
       return this.props.changeBubble(this.state.hookedId, responseBubble)
     })
-    // .then((action) => {
-    //   return this.props.addBrookOwners({...this.props.singleBrook, sourceUserId:this.props.user.id, hookedUserId: action.bubble.userId}, action.bubble.brookId)
-    // })
-     .then(() => {
-      console.log('done -- now you should be redirected to your brook view')
-      //redirect to brook view by changing url . 
-      //maybe you should make a brook view
+     .then((action) => {
+      this.props.history.push(`/brooks/${action.bubble.brookId}`)
     })
    
 
@@ -83,8 +78,7 @@ class SingleBubble extends Component {
   	  	return this.props.loadSuitors(bubbleId)
   	  }
       if(action.bubble.isHead && action.bubble.isHooked){
-        //loadStream() ==> write this function (redirect to stream component?)
-        //alternately -- load 'this bubble has been hooked' component
+        this.props.history.push(`/brooks/${action.bubble.brookId}`)
       }
   	})
   }
@@ -147,4 +141,4 @@ const mapDispatch = dispatch => ({
   addBrookOwners(brook, brookId){ return dispatch(changeOneBrook(brook, brookId))},
 })
 
-export default connect(mapState, mapDispatch)(SingleBubble)
+export default withRouter(connect(mapState, mapDispatch)(SingleBubble))
