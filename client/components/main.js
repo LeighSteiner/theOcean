@@ -26,6 +26,7 @@ const Main = (props) => {
               <Link to='/universe'>The Universe</Link>
               <Link to='/my-bubbles'> My Bubbles</Link>
               <Link to= '/my-brooks'> My Brooks</Link>
+              <Link to= '/new-bubble'> Blow a Bubble</Link>
               <a href='#' onClick={handleClick}>Logout</a>
             </div>
             : <div>
