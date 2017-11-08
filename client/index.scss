@@ -19,3 +19,20 @@ body {
     display: inline-block;
   }
 }
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50%;
+  border-color: blue;
+  width: 200px;
+  height: 200px; 
+  background: #BFE4E8;
+}
+
+.circle-item {
+  padding: 5px;
+}
