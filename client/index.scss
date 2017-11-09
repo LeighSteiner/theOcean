@@ -1,16 +1,25 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+  background-color:#C7CFD7;
+  display: flex;
 
   a {
     text-decoration: none;
+    color: #04447C;
   }
 
   label {
     display: block;
   }
 
+  nav {
+   display:flex;
+   align-items:center;
+   justify-content: center;
+  }
+
   nav a {
-    display: inline-block;
+    
     margin: 1em;
   }
 
@@ -18,21 +27,41 @@ body {
     margin: 1em;
     display: inline-block;
   }
+
+  h1 {
+    font-family: 'Rajdhani', sans-serif, bold;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10%;
+    border-color: dim-gray;
+    padding-left: 1px;
+    padding-right: 1px;
+    display: inline;
+  }
+  
+
+
 }
+
+
 
 .circle {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-style: solid;
+  border-style: invisible;
   border-width: 1px;
   border-radius: 50%;
-  border-color: blue;
+  background-image: url("http://www.52nx.net/article/UploadPic/2011-8/2011819233455072.png");
+  background-color: #DADBDF;
+  background-size: 200px;
+  background-position: center;
   width: 200px;
   height: 200px; 
-  background: #BFE4E8;
 }
 
 .circle-item {
   padding: 5px;
 }
+
+

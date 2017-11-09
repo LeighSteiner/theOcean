@@ -20,8 +20,8 @@ class MyBubbleView extends Component {
        {
        	this.props.userHeadBubbles && this.props.userHeadBubbles.length ? 
        	this.props.userHeadBubbles.map( (bubble) => 
-          (<li key={bubble.id}>
-           <Link to={`/bubbles/${bubble.id}`}>{bubble.message}</Link>
+          (<li key={bubble.id} className="circle">
+           <Link to={`/bubbles/${bubble.id}`}  className="circle-item">{bubble.message}</Link>
           </li>)
        		):
         <div>you have no unhooked bubbles, check your brooks</div>

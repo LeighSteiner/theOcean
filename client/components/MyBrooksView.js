@@ -23,7 +23,7 @@ class MyBrooksView extends Component {
              (
              	<li key={brookHead.id}>
              	<Link to={`/brooks/${brookHead.brookId}`}>
-             	  This brook springs from "{brookHead.message}"
+             	  This brook springs from <span className="circle"><span className="circle-item">"{brookHead.message}"</span></span>
              	</Link>
              	</li>
               )

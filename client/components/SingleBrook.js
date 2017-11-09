@@ -64,11 +64,13 @@ class SingleBrook extends Component {
                 person = "You"
               }
               return (
-             <li key={bubble.id} className="message-in-thread">
+             <li key={bubble.id} className="message-in-thread circle">
+              <div className="circle-item">
                 <span>{person}</span><br/>
               Sent: {bubble.createdAt}
               <br/>
               Spoken: {bubble.message}
+              </div>
              </li>
             	)}) :null
         }
