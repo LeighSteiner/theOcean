@@ -14,8 +14,9 @@ body {
 
   nav {
    display:flex;
-   align-items:center;
-   justify-content: center;
+   justify-content: space-between;
+   align-items: stretch;
+   padding-bottom: 40px;
   }
 
   nav a {
@@ -39,7 +40,27 @@ body {
     display: inline;
   }
   
+  button {
+    border: none;
+    color: white;
+    background-color: #ADDFCB;
+    border-radius: 50%;
+    display: inline-block;
+  }
 
+  select {
+    appearance: none; 
+    background-image: none;
+    border: none;
+
+  }
+  input {
+    border-radius: 50%;
+    border-style: none;
+    width: 160px;
+    height: 160px;
+    font-size: 10px;
+  }
 
 }
 
@@ -63,5 +84,16 @@ body {
 .circle-item {
   padding: 5px;
 }
+
+.tear {
+  width: 100px;
+  height: 100px;
+  border-radius: 0 50% 50% 50%;
+  border: 0px;
+  transform: rotate(45deg);
+  margin-top: 20px;
+  display: inline-block;
+}
+
 
 

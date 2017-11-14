@@ -15,13 +15,13 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>The Ocean</h1>
-      <h2> Just fall the fuck in...love </h2>
+      
       <nav>
         {
           isLoggedIn
             ? <div>
               {/* The navbar will show these links after you log in */}
+              <h1>The Ocean</h1>
               <Link to='/home'>Home</Link>
               <Link to='/universe'>The Universe</Link>
               <Link to='/my-bubbles'> My Bubbles</Link>

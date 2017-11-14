@@ -64,7 +64,7 @@ class NewBubbleForm extends Component {
       }
       </select>
      <label>What is the message in your bottle?</label>
-     <input name="message" onChange={this.handleMessageChange} value={this.state.message}/>
+     <input name="message" onChange={this.handleMessageChange} value={this.state.message} className="tear"/>
      <br/>
      <button className="blow-button" type="submit" onClick={this.handleSubmit}>Blow Your Bubble</button>
      </div>
