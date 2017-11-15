@@ -15,12 +15,12 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>The Ocean</h1>
-      <h2> Just fall the fuck in...love </h2>
+      <h1>The Ocean</h1> 
+      <h2 className="right-align"> Just fall the fuck in...love </h2>
       <nav>
         {
           isLoggedIn
-            ? <div>
+            ? <div className="right-align">
               {/* The navbar will show these links after you log in */}
               <Link to='/home'>Home</Link>
               <Link to='/universe'>The Universe</Link>
