@@ -11,8 +11,7 @@ const Brook = require('./brook');
  */
 
  Bubble.belongsTo(User);
- // Bubble.belongsTo(Bubble, {as: 'nextBubble'})
- //maybe unnecessary? just get messages in stream, order by date?
+
  Bubble.belongsTo(Bubble, {as: 'head'})
  // ^^ this is for "suitor" bubbles --> they are associated with a head message before they've been chosen, once they're chosen a brook is created
  Bubble.belongsTo(Ocean);
@@ -24,7 +23,20 @@ const Brook = require('./brook');
 
  Ocean.belongsTo(User)  //user who made ocean, can edit it, CANT DELETE IT
 
+//block tables
 
+User.belongsToMany(User, {
+	through: 'BlockedUsers', 
+	as: 'blockee', 
+	foreignKey: 'blocker'
+}) 
+
+//
+User.belongsToMany(User, {
+	through: 'Matches', 
+	as: 'userOne', 
+	foreignKey: 'userTwo'
+})
 //add ocean to ocean association for "sub sea"s?
 
 /**
