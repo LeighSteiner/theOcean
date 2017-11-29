@@ -12,7 +12,9 @@ class NewBubbleForm extends Component {
   	super(props)
   	this.state = {
   	 message:"", 
-  	 ocean: 1, //the default setting will be to send it to cosmic ocean "id:1"
+  	 ocean: undefined, 
+     //fix this default setting so that an ocean is always selected
+     //the default setting will be to send it to cosmic ocean "id:1"
   	 userId: 0, //not a real user -- if we see userId: 0 we know something is wrong
   	}
   	this.handleMessageChange = this.handleMessageChange.bind(this);
@@ -57,7 +59,7 @@ class NewBubbleForm extends Component {
   	return (
      <div className='new-bubble-form'>
      <label>What Ocean will you drop your bubble in?</label>
-     <select onChange={this.handleOceanChange}>
+     <select onChange={this.handleOceanChange} value={this.state.ocean}>
       {
         oceans && oceans.length ? 
         oceans.map( ocean => (<option key={ocean.id} value={ocean.id}>{ocean.name}</option>)) : null
