@@ -12,7 +12,9 @@ class NewBubbleForm extends Component {
   	super(props)
   	this.state = {
   	 message:"", 
-  	 ocean: 1, //the default setting will be to send it to cosmic ocean "id:1"
+  	 ocean: null, 
+     //fix this default setting so that an ocean is always selected
+     //the default setting will be to send it to cosmic ocean "id:1"
   	 userId: 0, //not a real user -- if we see userId: 0 we know something is wrong
   	}
   	this.handleMessageChange = this.handleMessageChange.bind(this);
