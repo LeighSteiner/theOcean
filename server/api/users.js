@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User } = require('../db/models')
+const { User, BlockedUsers } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -11,4 +11,17 @@ router.get('/', (req, res, next) => {
   })
     .then(users => res.json(users))
     .catch(next)
+})
+
+router.post('/blockMatch', (req, res, next) => {
+  // BlockedUsers.create(req.body)
+  // .then( blockMatch => {
+  // 	if (req.user && blockMatch.blocker === req.user.id){
+  //      res.json(blockMatch)
+  // 	}else {
+  // 	  next(new Error("you can't block me, i quit!"))
+  // 	}
+  // })
+  // .catch(next);
+  
 })

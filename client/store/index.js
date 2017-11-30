@@ -1,17 +1,18 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
-import createLogger from 'redux-logger'
-import thunkMiddleware from 'redux-thunk'
-import user from './user'
-import allOceans from './allOceans'
-import singleOcean from './singleOcean'
-import oceanBubbles from './oceanBubbles'
-import singleBubble from './singleBubble'
-import bubbleSuitors from './bubbleSuitors'
-import singleBrook from './singleBrook'
+import createLogger from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
+import user from './user';
+import allOceans from './allOceans';
+import singleOcean from './singleOcean';
+import oceanBubbles from './oceanBubbles';
+import singleBubble from './singleBubble';
+import bubbleSuitors from './bubbleSuitors';
+import singleBrook from './singleBrook'; 
 import userMessageList from './userMessageList';
-import brookBubbles from './brookBubbles'
+import brookBubbles from './brookBubbles';
 import userHeadBubbles from './userHeadBubbles';
 import userBrookHeads from './userBrookHeads';
+import blockedUsers from './blockedUsers';
 
 const reducer = combineReducers({
 	user, 
@@ -24,6 +25,7 @@ const reducer = combineReducers({
 	brookBubbles, 
 	userHeadBubbles, 
 	userBrookHeads,
+	blockedUsers,
 })
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
@@ -40,3 +42,4 @@ export * from './userMessageList'
 export * from './brookBubbles'
 export * from './userHeadBubbles'
 export * from './userBrookHeads'
+export * from './blockedUsers'

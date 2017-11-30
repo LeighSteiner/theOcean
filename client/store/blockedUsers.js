@@ -33,6 +33,10 @@ export const blockUser = (blockMatch, blockee) => {
 
 export default function (state = newlyBlockedUsers, action) {
   switch(action.type) {
+  	case ADD_NEW_BLOCKED_USER :
+  	  return [...state, action.blockee];
+  	case CLEAR_BLOCK_LIST :
+  	  return newlyBlockedUsers;
   	default:
   	  return state;
   }

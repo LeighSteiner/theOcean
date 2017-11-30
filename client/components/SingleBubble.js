@@ -6,7 +6,8 @@ import {  fetchOneBubble,
           updateOneBubble,
           postNewBrook,
           postNewSuitor,
-          changeOneBrook } from '../store';
+          changeOneBrook,
+          blockUser } from '../store';
 
 class SingleBubble extends Component {
   constructor(props) {
@@ -72,7 +73,11 @@ class SingleBubble extends Component {
   }
 
   handleBlock(e){
-   console.log('BLOCK THIS BITCH')
+     const blockMatch = {
+      blocker: this.props.user.id, 
+      blockee: this.props.singleBubble.userId
+     }
+     this.props.createBlock(blockMatch,this.props.singleBubble.userId);
   }
 
   componentDidMount() {
@@ -137,7 +142,8 @@ const mapState = state => ({
   singleBubble: state.singleBubble, 
   user: state.user, 
   bubbleSuitors: state.bubbleSuitors, 
-  singleBrook: state.singleBrook
+  singleBrook: state.singleBrook, 
+  blockedUsers: state.blockedUsers
 
 })
 
@@ -149,6 +155,7 @@ const mapDispatch = dispatch => ({
   createBrook(){ return dispatch(postNewBrook())}, 
   createSuitor(bubble){ return dispatch(postNewSuitor(bubble))},
   addBrookOwners(brook, brookId){ return dispatch(changeOneBrook(brook, brookId))},
+  createBlock(blockMatch, blockee){ return dispatch(blockUser(blockMatch, blockee))}
 })
 
 export default withRouter(connect(mapState, mapDispatch)(SingleBubble))

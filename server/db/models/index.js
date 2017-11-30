@@ -46,5 +46,5 @@ User.belongsToMany(User, {
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Brook, Ocean, Bubble
+  User, Brook, Ocean, Bubble, BlockedUsers, Matches
 }
