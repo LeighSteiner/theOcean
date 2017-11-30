@@ -21,6 +21,7 @@ class SingleBubble extends Component {
     this.handleNo = this.handleNo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBlock = this.handleBlock.bind(this);
   }
 
   hookBubble(e) {
@@ -70,6 +71,10 @@ class SingleBubble extends Component {
     });
   }
 
+  handleBlock(e){
+   console.log('BLOCK THIS BITCH')
+  }
+
   componentDidMount() {
   	const bubbleId = +this.props.match.params.bubbleId
   	this.props.loadOneBubble(bubbleId)
@@ -107,6 +112,11 @@ class SingleBubble extends Component {
           <input name="suitor" onChange={this.handleChange} value={this.state.suitorText}/>
           <button type="submit">blow!</button>
         </form>:null
+      }
+      {
+        this.props.user.id !== bubble.userId ? 
+        <button className="block-button" onClick={this.handleBlock}> Block this user? </button>
+        :null
       }
       {
         this.state.hookedMessage ?
