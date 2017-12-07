@@ -2,6 +2,7 @@ const User = require('./user');
 const Ocean = require('./ocean');
 const Bubble = require('./bubble');
 const Brook = require('./brook');
+const BlockedUsers = require('./BlockedUsers');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -46,5 +47,5 @@ User.belongsToMany(User, {
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Brook, Ocean, Bubble, BlockedUsers, Matches
+  User, Brook, Ocean, Bubble, BlockedUsers
 }

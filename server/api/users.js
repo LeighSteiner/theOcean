@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { User, BlockedUsers } = require('../db/models')
 module.exports = router
 
+
 router.get('/', (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
@@ -14,14 +15,22 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/blockMatch', (req, res, next) => {
-  // BlockedUsers.create(req.body)
-  // .then( blockMatch => {
-  // 	if (req.user && blockMatch.blocker === req.user.id){
-  //      res.json(blockMatch)
-  // 	}else {
-  // 	  next(new Error("you can't block me, i quit!"))
-  // 	}
-  // })
-  // .catch(next);
+  BlockedUsers.create(req.body)
+  .then( blockMatch => {
+  	if (req.user && blockMatch.blocker === req.user.id){
+       res.json(blockMatch)
+  	}else {
+  	  next(new Error("you can't block me, i quit!"))
+  	}
+  })
+  .catch(next);
   
+})
+
+// this is just to debug join table issues 
+router.get('/blockMatch', (req, res, next) => {
+  BlockedUsers.findAll({})
+  .then( blocks => res.json(blocks))
+  .catch(next);
+
 })
