@@ -6,7 +6,8 @@ import {  fetchOneBubble,
           updateOneBubble,
           postNewBrook,
           postNewSuitor,
-          changeOneBrook } from '../store';
+          changeOneBrook,
+          blockUser } from '../store';
 
 class SingleBubble extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class SingleBubble extends Component {
     this.handleNo = this.handleNo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBlock = this.handleBlock.bind(this);
   }
 
   hookBubble(e) {
@@ -70,6 +72,16 @@ class SingleBubble extends Component {
     });
   }
 
+  handleBlock(e){
+     const blockMatch = {
+      blocker: this.props.user.id, 
+      blockeeId: this.props.singleBubble.userId
+     }
+     console.log('BLOCK THIS BITCH')
+     this.props.createBlock(blockMatch,this.props.singleBubble.userId);
+     console.log('BITCH HAS BEEN BLOCKED ')
+  }
+
   componentDidMount() {
   	const bubbleId = +this.props.match.params.bubbleId
   	this.props.loadOneBubble(bubbleId)
@@ -86,6 +98,8 @@ class SingleBubble extends Component {
   render() {
     const bubble = this.props.singleBubble;
     const suitors = this.props.bubbleSuitors;
+    console.log('BLOCKER', this.props.user.id)
+    console.log('BlOCKEE', this.props.singleBubble.userId)
 
 
   	return(
@@ -109,6 +123,11 @@ class SingleBubble extends Component {
         </form>:null
       }
       {
+        this.props.user.id !== bubble.userId ? 
+        <button className="block-button" onClick={this.handleBlock}> Block this user? </button>
+        :null
+      }
+      {
         this.state.hookedMessage ?
         <div className="hook-a-bubble">
           <p> are you sure you want to hook the bubble that reads "{this.state.hookedMessage}"? <br/>
@@ -127,7 +146,8 @@ const mapState = state => ({
   singleBubble: state.singleBubble, 
   user: state.user, 
   bubbleSuitors: state.bubbleSuitors, 
-  singleBrook: state.singleBrook
+  singleBrook: state.singleBrook, 
+  blockedUsers: state.blockedUsers
 
 })
 
@@ -139,6 +159,7 @@ const mapDispatch = dispatch => ({
   createBrook(){ return dispatch(postNewBrook())}, 
   createSuitor(bubble){ return dispatch(postNewSuitor(bubble))},
   addBrookOwners(brook, brookId){ return dispatch(changeOneBrook(brook, brookId))},
+  createBlock(blockMatch, blockee){ return dispatch(blockUser(blockMatch, blockee))}
 })
 
 export default withRouter(connect(mapState, mapDispatch)(SingleBubble))
