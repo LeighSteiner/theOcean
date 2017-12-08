@@ -31,6 +31,9 @@ User.belongsToMany(User, {
 	as: 'blockee', 
 	foreignKey: 'blocker'
 }) 
+// requires two queries -- who you've blocked vs who's blocked you. 
+//message.find(include user(include(blocked users -- Op.ne (array of blocked users))))Op.n
+
 
 //
 User.belongsToMany(User, {
