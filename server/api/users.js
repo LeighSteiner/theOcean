@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 router.post('/blockMatch', (req, res, next) => {
   BlockedUsers.create(req.body)
   .then( blockMatch => {
-  	if (req.user && blockMatch.blocker === req.user.id){
+  	if (req.user &&( blockMatch.blocker === req.user.id || blockMatch.autoCreated)){ 
        res.json(blockMatch)
   	}else {
   	  next(new Error("you can't block me, i quit!"))
