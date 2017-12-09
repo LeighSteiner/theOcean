@@ -33,8 +33,8 @@ User.belongsToMany(User, {
 }) 
 // requires two queries -- who you've blocked vs who's blocked you. 
 //message.find(include user(include(blocked users -- Op.ne (array of blocked users))))Op.n
-
-
+//Block Behavior --> Add a field to the blockedUsers model that is an "auto create" boolean and then generate two block matches for every block
+ 
 //
 User.belongsToMany(User, {
 	through: 'Matches', 
