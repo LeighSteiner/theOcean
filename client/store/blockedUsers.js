@@ -20,7 +20,6 @@ export const blockUser = (blockMatch, blockee) => {
   return function thunk(dispatch) {
   	return axios.post('/api/users/blockMatch', blockMatch)
   	.then((res) => {
-      console.log('in blockUSerThunk')
   	  dispatch(addNewBlockedUser(blockee));
   	})
   	.catch((error) => { console.log(error); })
