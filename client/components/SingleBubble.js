@@ -75,10 +75,16 @@ class SingleBubble extends Component {
   handleBlock(e){
      const blockMatch = {
       blocker: this.props.user.id, 
-      blockeeId: this.props.singleBubble.userId
+      blockeeId: this.props.singleBubble.userId,
+     }
+     const autoMatch = {
+      blocker: this.props.singleBubble.userId, 
+      blockeeId: this.props.user.id, 
+      autoCreated: true,
      }
      console.log('BLOCK THIS BITCH')
      this.props.createBlock(blockMatch,this.props.singleBubble.userId);
+     this.props.createBlock(autoMatch, null);
      console.log('BITCH HAS BEEN BLOCKED ')
   }
 
