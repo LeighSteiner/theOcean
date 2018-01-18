@@ -8,21 +8,14 @@ import { fetchOneBrook,
 class SingleBrook extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      draft: ""
-    }
-    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  
-  handleChange(e) {
-    this.setState({draft: e.target.value})
-  } 
+   
 
   handleSubmit(e) {
   	e.preventDefault();
   	const response = {
-  	  message: this.state.draft, 
+  	  message: e.target.reply.value, 
   	  isHead: false, 
   	  isHooked: true, 
   	  userId: this.props.user.id, 
@@ -30,9 +23,7 @@ class SingleBrook extends Component {
   	}
   	// const updatedBrook = { numBubbles: this.props.singleBrook.numBubbles++}
   	this.props.postNewBrookBubble(response)
-  	.then(() => {
-  		this.setState({draft: ""});
-  	})
+    e.target.reply.value = ""
   	// this.props.updateBrook(updatedBrook, this.props.singleBrook.id);
   }
 
@@ -75,7 +66,7 @@ class SingleBrook extends Component {
         </ul> 
         <form className="new-message" onSubmit={this.handleSubmit} >
           <label>Reply: </label>
-          <input name="reply" onChange={this.handleChange} value={this.state.draft}/>
+          <textarea name="reply" />
           <button type="submit">blow!</button>
         </form>
       </div>
