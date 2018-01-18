@@ -12,13 +12,9 @@ class NewBubbleForm extends Component {
   	super(props)
   	this.state = {
   	 message:"", 
-  	 ocean: undefined, 
-     //fix this default setting so that an ocean is always selected
-     //the default setting will be to send it to cosmic ocean "id:1"
   	 userId: 0, //not a real user -- if we see userId: 0 we know something is wrong
   	}
   	this.handleMessageChange = this.handleMessageChange.bind(this);
-  	this.handleOceanChange = this.handleOceanChange.bind(this);
   	this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -26,16 +22,12 @@ class NewBubbleForm extends Component {
   	this.setState({message: e.target.value})
   }
 
-  handleOceanChange(e) {
-  	this.setState({ocean: e.target.value})
-  }
-
   handleSubmit(e){
    e.preventDefault();
 
    let theBubble = {
     message: this.state.message,
-    oceanId: this.state.ocean,
+    oceanId: e.target.ocean.value,
     userId: this.props.user.id, 
     isHead: true,
    }
@@ -43,8 +35,6 @@ class NewBubbleForm extends Component {
    .then(() => {
     this.setState({
     message: "", 
-    ocean: this.state.ocean,
-    userId: 0,
      })
    })
    
@@ -58,8 +48,9 @@ class NewBubbleForm extends Component {
     let oceans = this.props.allOceans;
   	return (
      <div className='new-bubble-form'>
+     <form onSubmit={this.handleSubmit}>
      <label>What Ocean will you drop your bubble in?</label>
-     <select onChange={this.handleOceanChange} value={this.state.ocean}>
+     <select onChange={this.handleOceanChange} name="ocean" value={this.state.ocean}>
       {
         oceans && oceans.length ? 
         oceans.map( ocean => (<option key={ocean.id} value={ocean.id}>{ocean.name}</option>)) : null
@@ -68,7 +59,8 @@ class NewBubbleForm extends Component {
      <label>What is the message in your bottle?</label>
      <input name="message" onChange={this.handleMessageChange} value={this.state.message}/>
      <br/>
-     <button className="blow-button" type="submit" onClick={this.handleSubmit}>Blow Your Bubble</button>
+     <button className="blow-button" type="submit">Blow Your Bubble</button>
+     </form>
      </div>
   		)
   }
