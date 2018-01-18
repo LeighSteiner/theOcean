@@ -10,35 +10,21 @@ import { makeNewFirstBubble, fetchOceans } from '../store';
 class NewBubbleForm extends Component {
   constructor(props) {
   	super(props)
-  	this.state = {
-  	 message:"", 
-  	 userId: 0, //not a real user -- if we see userId: 0 we know something is wrong
-  	}
-  	this.handleMessageChange = this.handleMessageChange.bind(this);
   	this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleMessageChange(e) { 
-  	this.setState({message: e.target.value})
   }
 
   handleSubmit(e){
    e.preventDefault();
 
    let theBubble = {
-    message: this.state.message,
+    message: e.target.message.value,
     oceanId: e.target.ocean.value,
     userId: this.props.user.id, 
     isHead: true,
    }
    this.props.blowBubble(theBubble)
-   .then(() => {
-    this.setState({
-    message: "", 
-     })
-   })
-   
-  }
+   e.target.message.value = "";
+   }
 
   componentDidMount(){
     this.props.loadOceans();
@@ -50,14 +36,14 @@ class NewBubbleForm extends Component {
      <div className='new-bubble-form'>
      <form onSubmit={this.handleSubmit}>
      <label>What Ocean will you drop your bubble in?</label>
-     <select onChange={this.handleOceanChange} name="ocean" value={this.state.ocean}>
+     <select onChange={this.handleOceanChange} name="ocean">
       {
         oceans && oceans.length ? 
         oceans.map( ocean => (<option key={ocean.id} value={ocean.id}>{ocean.name}</option>)) : null
       }
       </select>
      <label>What is the message in your bottle?</label>
-     <input name="message" onChange={this.handleMessageChange} value={this.state.message}/>
+     <textarea name="message"/>
      <br/>
      <button className="blow-button" type="submit">Blow Your Bubble</button>
      </form>
