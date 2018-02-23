@@ -47,7 +47,11 @@ router.get('/:bubbleId', (req, res, next) => {
   Bubble.findById(bubbleId)
   .then( (bubble) => {
   	if(req.user){ //AND bubble is not expired -- write this later
-      res.json(bubble)
+      if(req.session.banned.indexOf(bubble.userId) < 0){
+        res.json(bubble)
+      }else{
+        next(new Error('you arent allowed to see this'))
+      }
   	}else{
       next(new Error('you must dive in the ocean to blow bubbles'))
   	}
