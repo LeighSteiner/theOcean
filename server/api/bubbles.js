@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Bubble } = require('../db/models')
+const { Bubble, BlockedUsers } = require('../db/models')
 module.exports = router
 
 

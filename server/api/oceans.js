@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Ocean, Bubble } = require('../db/models')
+const { Ocean, Bubble, BlockedUsers } = require('../db/models')
 module.exports = router
 
 //get all oceans at /api/oceans
@@ -78,19 +78,47 @@ router.delete('/ocean/:oceanId', (req, res, next) => {
   .catch(next);
 })
 
+
+    // Bubble.findAll({ where: { oceanId }})
+    // .then( (bubbles) => {
+    //  let headBubbles = bubbles.filter((bubble) => { return (bubble.isHead && !(bubble.isHooked))})
+    //   res.json(headBubbles)
+    // })
+    // .catch(next);
 //get all bubbles in an ocean
-router.get('/ocean/:oceanId/bubbles', (req, res, next) => {
+   // const blocks = await BlockedUsers.findAll({where: {blocker: req.user.id}}).catch(next)
+   // const badIds = blocks.map((match)=>  match.dataValues.blockeeId );
+   // const oceanBubbles = await Bubble.findall({where : { oceanId }}).catch(next)
+router.get('/ocean/:oceanId/bubbles', async (req, res, next) => {
+ 
   const oceanId = req.params.oceanId;
-  Bubble.findAll({ where: { oceanId }})
-  .then( (bubbles) => {
-    if(req.user){
-     let headBubbles = bubbles.filter((bubble) => { return (bubble.isHead && !(bubble.isHooked))})
-     res.json(headBubbles)
-    }else{
+  if(req.user){
+    let findBlocks = BlockedUsers.findAll({where: { blocker: req.user.id }})
+    let bubbles = Bubble.findAll({where: { oceanId, isHead: true, isHooked: false, userId: {$ne :req.user.id}}})
+    Promise.all([findBlocks, bubbles])
+    .then(([blockMatches, bubbles]) => {
+  
+      let blocks = blockMatches.map((el) => el.dataValues.blockeeId);
+      let cleanBubbles = [];
+      for (let i = 0; i < bubbles.length; i ++ ){   
+         if (blocks.indexOf(bubbles[i].userId) < 0){
+          cleanBubbles.push(bubbles[i])
+         }
+      }
+      res.json(cleanBubbles)
+    })
+    .catch(next);
+    // .then((bubbles) => {
+    //   res.json(bubbles)
+    // })
+    // .catch(next);
+     
+  
+
+
+  }else{
      next(new Error('you have to sign in to see the bubbles'))
-    }
-  })
-  .catch(next);
+  }
 })
 
 //post a new ocean
