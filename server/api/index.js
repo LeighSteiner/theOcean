@@ -3,7 +3,7 @@ const { BlockedUsers } = require('../db/models')
 module.exports = router
 let counter = 0
 
-//puts banned userIDs on the session
+//puts blocked userIDs on the session
 router.use((req, res, next) => {
  if(req.user){
    	  BlockedUsers.findAll({where: {blocker: req.user.id }})

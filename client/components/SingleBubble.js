@@ -16,6 +16,7 @@ class SingleBubble extends Component {
       hookedMessage: "", 
       hookedId: null, 
       suitorText: "",
+      blockRequest: false
     };
     this.hookBubble = this.hookBubble.bind(this);
     this.handleYes = this.handleYes.bind(this);
@@ -23,6 +24,8 @@ class SingleBubble extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBlock = this.handleBlock.bind(this);
+    this.warnBlock = this.warnBlock.bind(this);
+    this.cancelBlock = this.cancelBlock.bind(this);
   }
 
   hookBubble(e) {
@@ -83,7 +86,16 @@ class SingleBubble extends Component {
       autoCreated: true,
      }
      this.props.createBlock(blockMatch,this.props.singleBubble.userId);
-     this.props.createBlock(autoMatch, null);
+     this.props.createBlock(autoMatch, null)
+     .then(() => this.props.history.push('/universe') )
+     
+  }
+
+  warnBlock(){
+    this.setState({blockRequest: true})
+  }
+  cancelBlock() {
+    this.setState({blockRequest: false})
   }
 
   componentDidMount() {
@@ -102,10 +114,6 @@ class SingleBubble extends Component {
   render() {
     const bubble = this.props.singleBubble;
     const suitors = this.props.bubbleSuitors;
-    console.log('BLOCKER', this.props.user.id)
-    console.log('BlOCKEE', this.props.singleBubble.userId)
-
-
   	return(
       <div className="single-bubble">
       {
@@ -128,8 +136,12 @@ class SingleBubble extends Component {
       }
       {
         this.props.user.id !== bubble.userId ? 
-        <button className="block-button" onClick={this.handleBlock}> Block this user? </button>
+        <button className="block-button" onClick={this.warnBlock}> Block this user? </button>
         :null
+      }
+      {
+       this.state.blockRequest ? <div><p> Are you sure you want to block this user? This cannot be undone?</p> 
+       <button onClick={this.handleBlock}>yes</button><button onClick={this.cancelBlock}>no</button></div> : null
       }
       {
         this.state.hookedMessage ?
