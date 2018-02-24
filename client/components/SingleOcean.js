@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { fetchOneOcean, fetchOceanBubbles } from '../store'
 
 class SingleOcean extends Component {
-  constructor(props) {
-  	super(props);
-  	this.state = {};
+  constructor() {
+  	super();
   }
 
   componentDidMount() {

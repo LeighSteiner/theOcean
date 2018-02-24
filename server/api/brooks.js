@@ -13,11 +13,11 @@ router.post('/new-brook', (req, res, next) => {
 router.get('/:brookId', (req, res, next) => {
 	Brook.findById(req.params.brookId)
 	.then( (brook) => {
-      if( !brook.sourceUserId || (req.user.id === brook.sourceUserId || req.user.id === brook.hookedUserId) ) {
-      	res.json(brook);
-      }else{
-      	next(new Error('this is not your brook!'))
-      }
+    if( !brook.sourceUserId || (req.user.id === brook.sourceUserId || req.user.id === brook.hookedUserId) ) {
+      res.json(brook);
+    }else{
+      next(new Error('this is not your brook!'))
+    }
 	})
 	.catch(next)
 })
@@ -28,7 +28,13 @@ router.get('/:brookId/bubbles', (req, res, next) => {
   	where: {brookId: req.params.brookId}, order: [['createdAt']]
   })
   .then((bubbles) => {
-  	res.json(bubbles)
+    let cleanBubbles = []
+    for (let i = 0; i < bubbles.length; i++) {
+      if(req.session.banned.indexOf(bubbles[i].userId) < 0){
+        cleanBubbles.push(bubbles[i])
+        }
+      }
+    res.json(cleanBubbles)
   })
   .catch(next)
 })

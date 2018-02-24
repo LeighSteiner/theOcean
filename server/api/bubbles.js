@@ -60,11 +60,10 @@ router.get('/:bubbleId', (req, res, next) => {
 })
 
 
-//update a bubble
+//update a bubble is this needed?
 
 router.put('/:bubbleId', (req, res, next) => {
   const bubbleId = req.params.bubbleId;
-
   Bubble.findById(bubbleId)
   .then( (bubble) => {
     return bubble.update(req.body)
@@ -74,7 +73,7 @@ router.put('/:bubbleId', (req, res, next) => {
   })
   .catch(next);
 })
-// post a new first bubble
+// post a new bubble
 
 router.post('/new-bubble', (req, res, next) => {
   Bubble.create(req.body)
@@ -109,43 +108,24 @@ router.delete('/:bubbleId', (req, res, next) => {
 //get all unHooked bubbles associated with a bubble
 
 router.get('/:bubbleId/suitors', (req, res, next) => {
-
   const bubbleId = req.params.bubbleId
   Bubble.findAll({where: {
     isHooked: false, 
     headId: bubbleId  //headId association
   }})
-  .then(( suitors ) => { //add security back in when you unfuck your database
-
-  // if (suitors[0].headId == req.user.id){ //this is a bad test -- how to access users who should see this
-       res.json(suitors)
-     // }else{
-      // next(new Error('this is not your dating pool'))
-     // }
+  .then(( suitors ) => { 
+    let cleanBubbles = []
+     for (let i = 0; i < suitors.length; i++) {
+      if(req.session.banned.indexOf(bubbles[i].userId) < 0){
+        cleanBubbles.push(bubbles[i])
+       }
+      }
+    res.json(cleanBubbles)
+   
   })
   .catch(next);
 })
 
-//brook stuff -- now see brooks.js
-
-// router.get('/:bubbleId/brook', (req, res, next) => {
-//   const bubbleId = req.params.bubbleId;
-//    Bubble.findById(bubbleId)
-//    .then((bubble) => {
-//     if (bubble.brookId){
-//       return Bubble.findAll({
-//         where: { brookId: bubble.brookId}
-//       })
-//     }else{
-//       next(new Error('there is no brook here'))
-//     }
-//    })
-//    .then((bubbles) => {
-//      res.json(bubbles)
-//    })
-//    .catch(next);
-
-// })
 
 
 
