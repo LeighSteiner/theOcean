@@ -24,9 +24,10 @@ const Main = (props) => {
               {/* The navbar will show these links after you log in */}
               <Link to='/home'>Home</Link>
               <Link to='/universe'>The Universe</Link>
-              <Link to='/my-bubbles'> My Bubbles</Link>
-              <Link to= '/my-brooks'> My Brooks</Link>
-              <Link to= '/new-bubble'> Blow a Bubble</Link>
+              <Link to='/my-bubbles'>My Bubbles</Link>
+              <Link to= '/my-brooks'>My Brooks</Link>
+              <Link to= '/new-bubble'>Blow a Bubble</Link>
+              <Link to='/new-ocean'>Fill An Ocean</Link> 
               <a href='#' onClick={handleClick}>Logout</a>
             </div>
             : <div>

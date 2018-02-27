@@ -3,20 +3,16 @@ import { connect } from 'react-redux';
 // import { withRouter } from 'react-router-dom';
 import { makeNewFirstBubble, fetchOceans } from '../store';
 
-//for now, this is the form only for a new Bubble to be dropped in the ocean
-//make the bubble, then choose an ocean for it to be dropped into, after which it will update with the ocean
-
-
 class NewBubbleForm extends Component {
-  constructor(props) {
-  	super(props)
+  constructor() {
+  	super();
   	this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e){
    e.preventDefault();
 
-   let theBubble = {
+   const theBubble = {
     message: e.target.message.value,
     oceanId: e.target.ocean.value,
     userId: this.props.user.id, 

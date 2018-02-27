@@ -6,6 +6,7 @@ import history from '../history';
 
 const GET_ONE_OCEAN = 'GET_ONE_OCEAN'
 
+
 // initial state
 
 const oneOcean = {}
@@ -22,6 +23,14 @@ export const fetchOneOcean = (oceanId) => {
   	.then( res => dispatch(getOneOcean(res.data)))
   	.catch((error) => { console.log(error); });
   };
+}
+
+export const makeNewOcean = (ocean) => {
+  return function thunk(dispatch) {
+    return axios.post('/api/oceans/new-ocean', ocean)
+    .then( res => { return dispatch(getOneOcean(res.data)) })
+    .catch((error) => { console.log(error); } );
+  }
 }
 
 //reducer
