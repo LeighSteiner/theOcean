@@ -18,10 +18,10 @@ class ViewAllOceans extends Component {
     const oceans = this.props.allOceans
     return (
       <div className="view-all-oceans">
-       <h3>Every Ocean in the Universe</h3>
-        <div className="oceans-list">
+       <h3 className="f4 bold center mw5"> Every Ocean in the Universe</h3>
+        <div className="oceans-list list pl0 ml0 center mw5 ba b--light-silver br3">
         { oceans && oceans.length ? 
-          oceans.map( ocean => ( <Link to={`/oceans/${ocean.id}`} key={ocean.id}>{ocean.name} - {ocean.description} </Link> ) ) : null
+          oceans.map( ocean => ( <li key={ocean.id} className="ph3 pv2 bb b--light-silver"><Link to={`/oceans/${ocean.id}`}>{ocean.name} - {ocean.description} </Link> </li>) ) : null
         }
         </div>
       </div>

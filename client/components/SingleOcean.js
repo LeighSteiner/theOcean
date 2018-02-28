@@ -23,13 +23,13 @@ class SingleOcean extends Component {
      {
      	ocean && bubbles ? 
       <div>
-      <h3>{ocean.name}</h3> 
+      <h3 className="f4 bold center mw5">{ocean.name}</h3> 
       <h4>{ocean.description}</h4>
-      <ul>
+      <ul className="list pl0 ml0 mw5  br3 center">
        {
       	bubbles && bubbles.length ? 
       	bubbles.map ( bubble => ( 
-          <li key={bubble.id}>
+          <li key={bubble.id} className="center br-pill measure-narrow ba b--light-silver" >
           <Link to={`/bubbles/${bubble.id}`}>
            {bubble.message} 
           </Link>
