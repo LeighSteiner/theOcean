@@ -19,7 +19,7 @@ export const fetchOceanBubbles = (oceanId) => {
   return function thunk(dispatch) {
   	return axios.get(`/api/oceans/ocean/${oceanId}/bubbles`)
   	.then ( res => {
-      dispatch(getOceanBubbles(res.data))
+      return dispatch(getOceanBubbles(res.data))
     })
   	.catch((error) => { console.log(error); });
   }
