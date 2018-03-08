@@ -14,13 +14,15 @@ const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
 
   return (
-    <header className="bg-white black-80 tc pv4 avenir">
-      <h1 className="mt2 mb0 avenir i fw1 f1">The Ocean</h1>
-      <h2 className="mt2 mb0 f6 fw4 ttu tracked"> Just fall the fuck in...love </h2>
-      <nav className="bt bb tc mw7 center mt4">
+    <header className="oceanBackground bg-white black-80 tc pv4 avenir">
+     
+      <h1 className="link dim black b f1 f-headline-ns tc db mb3 mb4-ns">The Ocean</h1>
+      <h2 className="link dim black f2 f5-ns dib mr3"> Just fall the fuck in...love </h2>
+      
+      <nav className="tc mw7 center mt4">
         {
           isLoggedIn
-            ? <div>
+            ? <div className="grayBackground br4">
               {/* The navbar will show these links after you log in */}
               <Link className="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l"  to='/home'>Home</Link>
               <Link className="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l" to='/universe'>The Universe</Link>
