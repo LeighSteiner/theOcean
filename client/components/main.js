@@ -16,8 +16,8 @@ const Main = (props) => {
   return (
     <header className="oceanBackground bg-white black-80 tc pv4 avenir">
      
-      <h1 className="link dim black b f1 f-headline-ns tc db mb3 mb4-ns">The Ocean</h1>
-      <h2 className="link dim black f2 f5-ns dib mr3"> Just fall the fuck in...love </h2>
+      <h1 className="link dim greenText b f1 f-headline-ns tc db mb3 mb4-ns">The Ocean</h1>
+      <h2 className="link dim greenText f2 f5-ns dib mr3"> Just fall the fuck in...love </h2>
       
       <nav className="tc mw7 center mt4">
         {

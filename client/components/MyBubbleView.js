@@ -15,7 +15,7 @@ class MyBubbleView extends Component {
   render() {
   	return (
       <div className="my-bubble-view">
-        <h2 className="f4 bold center mw5">Your Bubbles</h2>
+        <h2 className="greenText f4 bold center mw5">Your Bubbles</h2>
         <ul className="list pl0 ml0 mw5  br3 center">
        {
        	this.props.userHeadBubbles && this.props.userHeadBubbles.length ? 
