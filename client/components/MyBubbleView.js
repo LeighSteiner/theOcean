@@ -15,12 +15,12 @@ class MyBubbleView extends Component {
   render() {
   	return (
       <div className="my-bubble-view">
-        <h2>Your Bubbles</h2>
-        <ul>
+        <h2 className="f4 bold center mw5">Your Bubbles</h2>
+        <ul className="list pl0 ml0 mw5  br3 center">
        {
        	this.props.userHeadBubbles && this.props.userHeadBubbles.length ? 
        	this.props.userHeadBubbles.map( (bubble) => 
-          (<li key={bubble.id}>
+          (<li key={bubble.id} className=" center br-pill measure-narrow ba b--light-silver">
            <Link to={`/bubbles/${bubble.id}`}>{bubble.message}</Link>
           </li>)
        		):

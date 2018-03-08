@@ -44,8 +44,8 @@ class SingleBrook extends Component {
     let person = "";
     return (
       <div className="single-brook">
-        <h2>your path so far</h2> 
-        <ul>
+        <h2 className="f4 bold center mw5">your path so far</h2> 
+        <ul className="list pl0 ml0 mw5  br3 center">
         {
           bubbles && bubbles.length ?
             bubbles.map(bubble => {
@@ -55,18 +55,15 @@ class SingleBrook extends Component {
                 person = "You"
               }
               return (
-             <li key={bubble.id} className="message-in-thread">
-                <span>{person}</span><br/>
-              Sent: {bubble.createdAt}
-              <br/>
-              Spoken: {bubble.message}
+             <li  key={bubble.id} className=" center br-pill measure-narrow ba b--light-silver">
+                {person} -- {bubble.message}
              </li>
             	)}) :null
         }
         </ul> 
         <form className="new-message" onSubmit={this.handleSubmit} >
           <label>Reply: </label>
-          <textarea name="reply" />
+          <textarea className="br-pill center b--light-silver" name="reply" />
           <button type="submit">blow!</button>
         </form>
       </div>
