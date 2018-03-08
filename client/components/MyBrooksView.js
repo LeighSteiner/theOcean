@@ -8,14 +8,13 @@ class MyBrooksView extends Component {
   	super(props)
   }
   componentDidMount() {
-  	//write this function
   	this.props.loadBrookHeads(this.props.user.id)
   }
 
   render() {
   	return (
       <div className="my-brooks-view">
-        <h2>Your brooks</h2>
+        <h2 className="greenText">Your brooks</h2>
         <ul>
         {
           this.props.userBrookHeads && this.props.userBrookHeads.length ?

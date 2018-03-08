@@ -24,7 +24,7 @@ class NewOceanForm extends Component {
   render() {
   	return (
       <div className='new-ocean-form'>
-       <h1>Make a new Ocean to redefine Love</h1>
+       <h1 className="greenText">Make a new Ocean to redefine Love</h1>
        <form onSubmit={this.handleSubmit}>
          <label>What is your Ocean's name?</label>
          <input name='name' />

@@ -3,5 +3,14 @@
  }
 
 .grayBackground {
-	background-color: #b8c1bb;
+  background-color: #b8c1bb;
+}
+
+.greenText {
+ color: #e2eae1;
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
