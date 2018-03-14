@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchOneOcean, fetchOceanBubbles } from '../store'
-
+import * as d3 from "d3";
 class SingleOcean extends Component {
   constructor() {
   	super();

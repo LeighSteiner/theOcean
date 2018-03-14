@@ -20,7 +20,7 @@ class MyBubbleView extends Component {
        {
        	this.props.userHeadBubbles && this.props.userHeadBubbles.length ? 
        	this.props.userHeadBubbles.map( (bubble) => 
-          (<li key={bubble.id} className=" center br-pill measure-narrow ba b--light-silver">
+          (<li key={bubble.id} className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground">
            <Link to={`/bubbles/${bubble.id}`}>{bubble.message}</Link>
           </li>)
        		):

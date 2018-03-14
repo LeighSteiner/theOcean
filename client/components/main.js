@@ -34,8 +34,8 @@ const Main = (props) => {
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
-              <Link className="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l" to='/login'>Login</Link>
-              <Link className="f6 f5-l link bg-animate black-80 hover-bg-lightest-blue dib pa3 ph4-l" to='/signup'>Sign Up</Link>
+              <Link className="f6 link dim br-pill ph3 pv2 mb2 dib greenText bg-gray" to='/login'>Login</Link>
+              <Link className="f6 link dim br-pill ph3 pv2 mb2 dib greenText bg-gray"to='/signup'>Sign Up</Link>
             </div>
         }
       </nav>

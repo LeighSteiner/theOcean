@@ -13,14 +13,14 @@ class MyBrooksView extends Component {
 
   render() {
   	return (
-      <div className="my-brooks-view">
+      <div className="list pl0 ml0 mw5  br3 center">
         <h2 className="greenText">Your brooks</h2>
         <ul>
         {
           this.props.userBrookHeads && this.props.userBrookHeads.length ?
           this.props.userBrookHeads.map((brookHead) =>
              (
-             	<li key={brookHead.id}>
+             	<li className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" key={brookHead.id}>
              	<Link to={`/brooks/${brookHead.brookId}`}>
              	  This brook springs from "{brookHead.message}"
              	</Link>

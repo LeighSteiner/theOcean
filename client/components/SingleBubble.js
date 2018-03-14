@@ -118,7 +118,7 @@ class SingleBubble extends Component {
       <div className="single-bubble">
       {
       	bubble ? 
-        <p>{bubble.message}</p>
+        <p className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground">{bubble.message}</p>
       	:null
       }
 

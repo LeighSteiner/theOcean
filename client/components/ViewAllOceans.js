@@ -19,9 +19,9 @@ class ViewAllOceans extends Component {
     return (
       <div className="view-all-oceans">
        <h3 className="greenText f4 bold center mw5 br4"> Every Ocean in the Universe</h3>
-        <div className="grayBackground oceans-list list pl0 ml0 center mw5 ba b--light-silver br3">
+        <div className="list pl0 ml0 mw5  br3 center">
         { oceans && oceans.length ? 
-          oceans.map( ocean => ( <li key={ocean.id} className="ph3 pv2 bb b--light-silver"><Link to={`/oceans/${ocean.id}`}>{ocean.name} - {ocean.description} </Link> </li>) ) : null
+          oceans.map( ocean => ( <li key={ocean.id} className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground"><Link to={`/oceans/${ocean.id}`}>{ocean.name} - {ocean.description} </Link> </li>) ) : null
         }
         </div>
       </div>
