@@ -42,7 +42,7 @@ class NewBubbleForm extends Component {
      <label className="greenText">What is the message in your bottle?</label>
      <textarea className="br-pill center b--light-silver" name="message"/>
      <br/>
-     <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" type="submit">Blow Your Bubble</button>
+     <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground avenir" type="submit">Blow Your Bubble</button>
      </form>
      </div>
   		)

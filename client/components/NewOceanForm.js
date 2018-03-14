@@ -32,7 +32,7 @@ class NewOceanForm extends Component {
          <label className="greenText">Describe The Flora and Fauna in your Ocean: </label>
          <textarea className="br-pill center b--light-silver" name='description' /> 
          <br />
-         <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground"  type='submit'> Fill Your Ocean </button> 
+         <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground avenir"  type='submit'> Fill Your Ocean </button> 
        </form>
       </div> 
   	)

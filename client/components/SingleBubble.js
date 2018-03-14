@@ -132,17 +132,17 @@ class SingleBubble extends Component {
           <label className="greenText">Blow a bubble, see if it gets hooked</label>
           <br />
           <input className="br-pill center b--light-silver" name="suitor" onChange={this.handleChange} value={this.state.suitorText}/>
-          <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" type="submit">blow!</button>
+          <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground avenir" type="submit">blow!</button>
         </form>:null
       }
       {
         this.props.user.id !== bubble.userId ? 
-        <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" onClick={this.warnBlock}> Block this user? </button>
+        <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground avenir" onClick={this.warnBlock}> Block this user? </button>
         :null
       }
       {
        this.state.blockRequest ? <div><p className="greenText"> Are you sure you want to block this user? This cannot be undone.</p> 
-       <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" onClick={this.handleBlock}>yes</button><button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" onClick={this.cancelBlock}>no</button></div> : null
+       <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground avenir" onClick={this.handleBlock}>yes</button><button className=" avenir f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" onClick={this.cancelBlock}>no</button></div> : null
       }
       {
         this.state.hookedMessage ?
@@ -150,7 +150,7 @@ class SingleBubble extends Component {
           <p className="greenText"> are you sure you want to hook the bubble that reads "{this.state.hookedMessage}"? <br/>
           you can only reply to one bubble, and once you pick one, you won't have access to the others anymore.
           </p>
-          <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" onClick={this.handleYes}>yes</button><button onClick={this.handleNo}>no</button>
+          <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground avenir" onClick={this.handleYes}>yes</button><button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground avenir" onClick={this.handleNo}>no</button>
         </div>
          : null
       }

@@ -64,7 +64,7 @@ class SingleBrook extends Component {
         <form className="new-message" onSubmit={this.handleSubmit} >
           <label className="greenText">Reply: </label>
           <textarea className="br-pill center b--light-silver" name="reply" />
-          <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" type="submit">blow!</button>
+          <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground avenir" type="submit">blow!</button>
         </form>
       </div>
       )
