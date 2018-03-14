@@ -26,12 +26,13 @@ class NewOceanForm extends Component {
       <div className='new-ocean-form'>
        <h1 className="greenText">Make a new Ocean to redefine Love</h1>
        <form onSubmit={this.handleSubmit}>
-         <label>What is your Ocean's name?</label>
-         <input name='name' />
-         <label>Describe The Flora and Fauna in your Ocean: </label>
-         <textarea name='description' /> 
+         <label className="greenText">What is your Ocean's name?</label>
+         <input className="br-pill center b--light-silver" name='name' />
          <br />
-         <button type='submit'> Fill Your Ocean </button> 
+         <label className="greenText">Describe The Flora and Fauna in your Ocean: </label>
+         <textarea className="br-pill center b--light-silver" name='description' /> 
+         <br />
+         <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground"  type='submit'> Fill Your Ocean </button> 
        </form>
       </div> 
   	)

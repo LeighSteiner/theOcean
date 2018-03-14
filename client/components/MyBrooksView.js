@@ -26,7 +26,7 @@ class MyBrooksView extends Component {
              	</Link>
              	</li>
               )
-          	) : <div> you have no bubbling brooks </div>
+          	) : <div className="greenText"> you have no bubbling brooks </div>
         }
         </ul>
       </div>

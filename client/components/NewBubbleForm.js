@@ -31,17 +31,18 @@ class NewBubbleForm extends Component {
   	return (
      <div className='new-bubble-form'>
      <form onSubmit={this.handleSubmit}>
-     <label>What Ocean will you drop your bubble in?</label>
+     <label className="greenText">What Ocean will you drop your bubble in?</label>
      <select onChange={this.handleOceanChange} name="ocean">
       {
         oceans && oceans.length ? 
         oceans.map( ocean => (<option key={ocean.id} value={ocean.id}>{ocean.name}</option>)) : null
       }
-      </select>
-     <label>What is the message in your bottle?</label>
-     <textarea name="message"/>
+      </select> 
+      <br/>
+     <label className="greenText">What is the message in your bottle?</label>
+     <textarea className="br-pill center b--light-silver" name="message"/>
      <br/>
-     <button className="blow-button" type="submit">Blow Your Bubble</button>
+     <button className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" type="submit">Blow Your Bubble</button>
      </form>
      </div>
   		)
