@@ -24,7 +24,7 @@ class MyBubbleView extends Component {
            <Link to={`/bubbles/${bubble.id}`}>{bubble.message}</Link>
           </li>)
        		):
-        <div>you have no unhooked bubbles, check your brooks</div>
+        <div className="greenText">you have no unhooked bubbles, check your brooks</div>
        }
        </ul> 
       </div>
