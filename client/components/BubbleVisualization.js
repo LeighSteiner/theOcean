@@ -6,13 +6,35 @@ import { fetchOneOcean, fetchOceanBubbles } from '../store';
 import moment from 'moment';
 
  class BubbleVisualization extends Component {
-//should take ocean bubble props
   componentDidMount(){
-   //d3 shit goes here
    if(this.props.oceanBubbles){
+    let bubbles = this.props.oceanBubbles.map((bubble) => {
+      let a = moment(bubble.createdAt);
+      let b = moment();
+      let time = b -a;
+      
+     let bubbleObj = {
+      id : bubble.id, 
+      message: bubble.message, 
+      userId: bubble.userId, 
+      time: time,
+     }
+     return bubbleObj
+    })
+    //find min and max time properties and set them to the domain
+    let min = bubbles[0].time
+    let max = bubbles[0].time
+    for (let i = 1; i < bubbles.length; i++){
+      if (bubbles[i].time > max){
+        max = bubbles[i].time;
+      }
+      if(bubbles[i].time < min){
+        min = bubbles[i].time
+      }
+    }    
     //a radius scale to control radius of bubbles
     //domain is the "raw input" that will be mapped on to a size range
-    let radiusScale = d3.scaleSqrt().domain([8264943115,1]).range([10, 80])
+    let radiusScale = d3.scaleSqrt().domain([max,min]).range([10, 80])
 
     // a simulation is a collection of forces 
     //detailing where we want our circles to go
@@ -21,26 +43,11 @@ import moment from 'moment';
     //(often say, width/2)
     //step one: get them to middle
     //step two: avoid collision  --use forceCollide
-    //step three: alter radius to represent data: right now it is set
-    //to show size based on id, alter later to do time since creation
+    //step three: alter radius to represent data: 
    	let simulation = d3.forceSimulation()
    	.force("x", d3.forceX(200).strength(0.05))
    	.force("y", d3.forceY(200).strength(0.05))
    	.force("collide", d3.forceCollide((d) => radiusScale(d.time)+1))
-
-    let bubbles = this.props.oceanBubbles.map((bubble) => {
-      let a = moment(bubble.createdAt);
-      let b = moment();
-      let time = b -a;
-      
-     let bubbleObj = {
-     	id : bubble.id, 
-     	message: bubble.message, 
-     	userId: bubble.userId, 
-     	time: time,
-     }
-     return bubbleObj
-    })
 
      let circles = d3.select('#bubble-viz').selectAll('circle .bubbles')
    					.data(bubbles)
