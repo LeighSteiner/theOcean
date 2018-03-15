@@ -4,7 +4,6 @@
   "description": "a dating app for still waters that run deep",
   "engines": {
     "node": "8.4.0",
-    "npm" : "4.6.1"
   },
   "main": "index.js",
   "scripts": {
