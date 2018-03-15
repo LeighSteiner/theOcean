@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "a dating app for still waters that run deep",
   "engines": {
-    "node": "8.4.0",
+    "node": "8.4.0"
   },
   "main": "index.js",
   "scripts": {
