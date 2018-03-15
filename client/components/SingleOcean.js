@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchOneOcean, fetchOceanBubbles } from '../store'
-import * as d3 from "d3";
+import { fetchOneOcean, fetchOceanBubbles } from '../store';
+import  BubbleVisualization  from './BubbleVisualization';
+// import * as d3 from "d3";
 class SingleOcean extends Component {
   constructor() {
   	super();
@@ -28,12 +29,7 @@ class SingleOcean extends Component {
       <ul className="list pl0 ml0 mw5  br3 center">
        {
       	bubbles && bubbles.length ? 
-      	bubbles.map ( bubble => ( 
-          <li key={bubble.id} className="f6 link dim br-pill ph3 pv2 mb2 dib grayBackground" >
-          <Link to={`/bubbles/${bubble.id}`}>
-           {bubble.message} 
-          </Link>
-          </li> )) : null
+        <BubbleVisualization oceanBubbles={bubbles} /> : null
        }
       </ul>
       </div> : null
